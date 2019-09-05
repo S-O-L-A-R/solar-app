@@ -1,25 +1,26 @@
 {
   "name": "solar-app",
   "version": "0.1.0",
+  "author": {
+    "name": "S.O.L.A.R team"
+  },
   "private": true,
   "dependencies": {
-    "@loadable/component": "^5.10.2",
+    "@loadable/component": "5.10.2",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.4",
     "@types/react": "16.9.2",
     "@types/react-dom": "16.9.0",
-    "axios": "^0.19.0",
-    "mobx": "^5.13.0",
-    "mobx-react": "^5.4.4",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-router5": "^7.1.0",
+    "axios": "0.19.0",
+    "mobx": "5.13.0",
+    "mobx-react": "5.4.4",
+    "react": "16.9.0",
+    "react-dom": "16.9.0",
+    "react-router": "5.0.1",
+    "react-router-config": "5.0.1",
+    "react-router-dom": "5.0.1",
     "react-scripts": "3.1.1",
-    "router5": "^7.0.2",
-    "router5-plugin-browser": "^7.0.2",
-    "router5-plugin-listeners": "^7.0.2",
-    "router5-plugin-logger": "^7.0.2",
-    "styled-components": "^4.3.2",
+    "styled-components": "4.3.2",
     "typescript": "3.6.2"
   },
   "scripts": {
@@ -44,10 +45,12 @@
     ]
   },
   "devDependencies": {
-    "@types/loadable__component": "^5.10.0",
-    "@types/webpack-env": "^1.14.0",
-    "husky": "^3.0.5",
-    "lint-staged": "^9.2.5",
-    "prettier": "^1.18.2"
+    "@types/loadable__component": "5.10.0",
+    "@types/react-router-config": "5.0.0",
+    "@types/react-router-dom": "4.3.5",
+    "@types/webpack-env": "1.14.0",
+    "husky": "3.0.5",
+    "lint-staged": "9.2.5",
+    "prettier": "1.18.2"
   }
 }

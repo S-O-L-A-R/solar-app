@@ -1,17 +1,16 @@
 import React from 'react'
-import createRouteComponent from './RouteComponent'
+import Routes from 'core/route'
+import { HashRouter } from 'react-router-dom'
 
-const RouteComponent: any = createRouteComponent('')
-
-export default class App extends React.PureComponent {
-	render() {
-		return (
+export default function App() {
+	return (
+		<HashRouter>
 			<div>
 				<span>Header</span>
 				<div>
-					<RouteComponent />
+					<Routes />
 				</div>
 			</div>
-		)
-	}
+		</HashRouter>
+	)
 }
