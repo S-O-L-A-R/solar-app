@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { unregister } from './serviceWorker'
 import { configure as mobxConfigure } from 'mobx'
-import App from 'core/view/App'
+import App from 'core/App'
 
 mobxConfigure({ enforceActions: 'observed' })
 
