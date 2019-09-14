@@ -8,10 +8,12 @@ import SearchablePageWrapper from 'components/SearchablePageWrapper'
 import CustomerMenuCard from 'components/CustomerMenuCard'
 import ChefMenuCard from 'components/ChefMenuCard'
 import PageContainer from 'components/PageContainer'
+import SummaryModal from 'components/SummaryModal/index'
 
 export default function Menu() {
 	return (
 		<TableWrapper>
+			<SummaryModal />
 			<SearchablePageWrapper placeholder="Find your menu...">
 				<PageContainer>
 					<Gap type="vertical" size="20px">
