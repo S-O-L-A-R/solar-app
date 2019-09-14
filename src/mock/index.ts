@@ -13,10 +13,10 @@ export const ACTIVE_MENU = {
 }
 
 export const INACTIVE_MENU = {
-	name: 'Gyu Don',
+	name: 'Apple',
 	thumbnailUrl: 'https://avatars1.githubusercontent.com/u/10514215?s=460&v=4',
-	desc: 'sdadasdasadsads',
-	price: 900,
+	desc: 'Hello World',
+	price: 109,
 	active: false,
 }
 
