@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 export const PageContainer = styled.div`
 	@media (orientation: portrait) {
@@ -18,4 +18,10 @@ export const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+`
+
+export const GlobalStylesheet = createGlobalStyle`
+	body {
+		padding-right: 0 !important;
+	}
 `

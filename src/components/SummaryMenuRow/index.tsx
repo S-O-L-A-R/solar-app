@@ -35,23 +35,23 @@ const SinglePrice = styled.div`
 
 interface MenuRowProps {
 	name: string
-	total: number
 	amount: number
+	quantity: number
 	price?: number
 	memo?: string
 }
 
-const SummaryMenuRow = ({ name, total, price, memo, amount }: MenuRowProps) => {
+const SummaryMenuRow = ({ name, amount, price, memo, quantity }: MenuRowProps) => {
 	return (
 		<MenuRowContainer className="highlight">
-			<Quantity>{`${amount}x`}</Quantity>
+			<Quantity>{`${quantity}x`}</Quantity>
 			<NameContainer>
 				<div>{name}</div>
-				{!isEmpty(memo) && <Memo className="gray2-text">{memo}</Memo>}
+				{!isEmpty(memo) && memo !== '-' && <Memo className="gray2-text">{memo}</Memo>}
 			</NameContainer>
 			<PriceContainer>
-				<div>{total}</div>
-				{amount > 1 && price && <SinglePrice className="gray2-text">{`(฿${price})`}</SinglePrice>}
+				<div>{amount}</div>
+				{quantity > 1 && price && <SinglePrice className="gray2-text">{`(฿${price})`}</SinglePrice>}
 			</PriceContainer>
 		</MenuRowContainer>
 	)

@@ -29,7 +29,7 @@
     "react-router-config": "5.0.1",
     "react-router-dom": "5.0.1",
     "react-scripts": "3.1.1",
-    "solarxui": "^0.1.15",
+    "solarxui": "^0.1.16",
     "styled-components": "4.3.2",
     "typescript": "3.6.2",
     "use-react-router": "^1.0.7"

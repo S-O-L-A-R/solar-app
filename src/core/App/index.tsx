@@ -8,7 +8,7 @@ import RestaurantStore from 'stores/RestaurantStore'
 import useReactRouter from 'use-react-router'
 import qs from 'qs'
 
-import { PageContainer, Container } from './styled'
+import { PageContainer, Container, GlobalStylesheet } from './styled'
 
 const NotFound = () => (
 	<Container>
@@ -39,6 +39,7 @@ export default function App() {
 				) : (
 					<NotFound />
 				)}
+				<GlobalStylesheet />
 			</PageContainer>
 		</ErrorBoundary>
 	))
