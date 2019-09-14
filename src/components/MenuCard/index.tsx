@@ -12,9 +12,9 @@ const MenuCard = ({ menu: { thumbnailUrl, name, desc, price, active }, plugins }
 	return (
 		<Card>
 			<Gap size="18px">
-				<Photo src={thumbnailUrl} alt="" size={95} variant="normal" className={active ? 'grayscale' : ''} />
+				<Photo src={thumbnailUrl} alt="" size={95} variant="normal" className={!active ? 'grayscale' : ''} />
 				<Info>
-					<Head className={active ? 'grayscale' : ''}>
+					<Head className={!active ? 'grayscale' : ''}>
 						<Gap size="8px" type="vertical">
 							<Title className="highlight">{name}</Title>
 							<Desc>{desc}</Desc>

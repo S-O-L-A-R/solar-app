@@ -24,7 +24,7 @@ export const Price = styled.div`
 	font-size: 18px;
 	display: flex;
 	justify-content: flex-end;
-	align-items: center;
+	align-items: flex-start;
 `
 
 export const Info = styled.div`
