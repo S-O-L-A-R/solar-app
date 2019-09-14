@@ -2,6 +2,7 @@ import React from 'react'
 import OrderLine from 'components/OrderLine'
 import { Name, Price } from './styled'
 import { Photo } from 'solarxui'
+import { Order } from 'types/Order'
 
 interface Props {
 	order: Order

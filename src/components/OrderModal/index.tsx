@@ -9,13 +9,14 @@ import {
 	StyledNumberPickerContainer,
 } from './styled'
 import DraftMenuItem from 'components/DraftMenuItem'
+import { DraftMenuItemType } from 'types/Menu'
 
 interface Props {
 	menuName: string
 	menuSubtitle?: string
 	image: string
 	price: number
-	draftMenuItems?: DraftMenuItem[]
+	draftMenuItems?: DraftMenuItemType[]
 }
 
 export default function OrderModal({ image, menuName, menuSubtitle, price, draftMenuItems }: Props) {

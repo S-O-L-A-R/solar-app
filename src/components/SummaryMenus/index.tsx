@@ -1,9 +1,9 @@
 import React, { useMemo } from 'react'
-import { MenuItem } from 'types'
 import SummaryMenuRow from 'components/SummaryMenuRow'
 import { isEmpty } from 'lodash'
 import { Separator } from 'solarxui'
 import styled from 'styled-components'
+import { MenuItem } from 'types/Menu'
 
 interface Props {
 	menus: MenuItem[]

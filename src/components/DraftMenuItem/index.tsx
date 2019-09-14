@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { StyledDraftMenuItemContainer, StyledMemo, StyledAmount } from './styled'
 import { NumberPicker } from 'solarxui'
+import { DraftMenuItemType } from 'types/Menu'
 
-export default function DraftMenuItem({ memo, amount, user }: DraftMenuItem) {
+export default function DraftMenuItem({ memo, amount, user }: DraftMenuItemType) {
 	const [draftAmount, setdraftAmount] = useState(amount)
 
 	const onIncrease = () => {

@@ -1,3 +1,5 @@
+import { Order } from 'types/Order'
+
 export const RESTAURANT_TITLE = 'Cool Restaurant'
 
 export const TABLE_NUMBER = 'Table No.9'

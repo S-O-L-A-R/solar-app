@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react'
 import MenuCard from 'components/MenuCard'
-import { Menu } from 'types'
 import { PlusButton } from 'solarxui'
 import { Container, UsersContainer } from './styled'
+import { Menu } from 'types/Menu'
 
 interface Props {
 	menu: Menu

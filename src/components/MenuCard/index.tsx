@@ -1,6 +1,7 @@
 import React, { ReactNode } from 'react'
 import { Card, Photo, Gap } from 'solarxui'
 import { Title, Desc, Head, Price, Info } from './styled'
+import { Menu } from 'types/Menu'
 
 interface Props {
 	menu: Menu

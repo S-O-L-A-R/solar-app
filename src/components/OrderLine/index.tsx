@@ -5,6 +5,8 @@ import { localizedDurationFromNow } from 'utils/dateUtils'
 import { Time, Detail, Desc, Sep, Wrapper } from './styled'
 import { isEmpty } from 'lodash'
 import cn from 'classnames'
+import { MenuItem } from 'types/Menu'
+import { Order } from 'types/Order'
 
 interface Props {
 	title: ReactNode

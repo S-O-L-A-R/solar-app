@@ -2,6 +2,7 @@ import React from 'react'
 import OrderLine from 'components/OrderLine'
 import { Button, Gap, UndoButton } from 'solarxui'
 import { ButtonContainer, TableName } from './styled'
+import { Order } from 'types/Order'
 
 interface Props {
 	order: Order

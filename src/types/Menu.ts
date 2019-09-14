@@ -1,4 +1,6 @@
-interface Menu {
+import { User } from './User'
+
+export interface Menu {
 	name: string
 	desc: string
 	thumbnailUrl: string
@@ -6,7 +8,7 @@ interface Menu {
 	active: boolean
 }
 
-interface MenuItem {
+export interface MenuItem {
 	name: string
 	memo: string
 	amount: number
@@ -14,7 +16,7 @@ interface MenuItem {
 	price: number
 }
 
-interface DraftMenuItem {
+export interface DraftMenuItemType {
 	memo: string
 	amount: number
 	user: User
