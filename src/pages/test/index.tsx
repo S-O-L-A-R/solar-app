@@ -13,6 +13,7 @@ export default () => {
 	}, [isInit])
 	return useObserver(() => (
 		<div>
+			<h1>LIFFFF</h1>
 			<h1>{userProfile.value.data && userProfile.value.data.userId}</h1>
 			<h1>{userProfile.value.data && userProfile.value.data.displayName}</h1>
 			<h1>{accessToken.value.data && accessToken.value.data}</h1>

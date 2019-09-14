@@ -5,6 +5,7 @@ import MenuCard from 'components/MenuCard'
 import PageButton from 'components/PageButton'
 import TableWrapper from 'components/TableWrapper'
 import SearchablePageWrapper from 'components/SearchablePageWrapper'
+import CustomerMenuCard from 'components/CustomerMenuCard'
 import PageContainer from 'components/PageContainer'
 
 export default function Menu() {
@@ -15,7 +16,7 @@ export default function Menu() {
 					<Gap type="vertical" size="20px">
 						<MenuCard menu={ACTIVE_MENU} />
 						<MenuCard menu={INACTIVE_MENU} />
-						<MenuCard menu={ACTIVE_MENU} />
+						<CustomerMenuCard menu={ACTIVE_MENU} />
 						<MenuCard menu={INACTIVE_MENU} />
 						<MenuCard menu={ACTIVE_MENU} />
 						<MenuCard menu={INACTIVE_MENU} />
