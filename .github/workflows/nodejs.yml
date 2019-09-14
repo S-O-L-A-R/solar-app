@@ -27,4 +27,6 @@ jobs:
       uses: w9jds/firebase-action@v1.0.1
       env:
         PROJECT_ID: vaulted-channel-252309
+      secret:
+        - FIREBASE_TOKEN 
 
