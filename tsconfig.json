@@ -24,7 +24,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "typeRoots": [
-      "types"
+      "types",
     ],
     "noEmit": true
   },
