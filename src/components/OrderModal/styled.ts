@@ -1,8 +1,9 @@
 import styled from 'styled-components'
 
 export const StyledContainer = styled.div`
-	height: 100vh;
+	height: calc(75vh - 235px);
 	padding: 18px;
+	overflow-y: scroll;
 `
 
 export const StyledOrderDetail = styled.div`
