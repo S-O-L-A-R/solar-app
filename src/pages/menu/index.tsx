@@ -9,6 +9,7 @@ import CustomerMenuCard from 'components/CustomerMenuCard'
 import ChefMenuCard from 'components/ChefMenuCard'
 import PageContainer from 'components/PageContainer'
 import SummaryModal from 'components/SummaryModal/index'
+import OrderModal from 'components/OrderModal'
 
 export default function Menu() {
 	const [summaryModalOpen, setSummaryModalOpen] = useState(true)
@@ -44,6 +45,12 @@ export default function Menu() {
 				</PageContainer>
 				<PageButton onClick={openSummaryModal} />
 			</SearchablePageWrapper>
+			<OrderModal
+				menuName="Gyu don"
+				menuSubtitle="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown"
+				image="https://img.blognone.com/jobs/prod/310x155/cover/flowaccount-co-ltd.jpg"
+				price={199}
+			/>
 		</TableWrapper>
 	)
 }
