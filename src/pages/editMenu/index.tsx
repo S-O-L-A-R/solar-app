@@ -1,7 +1,6 @@
-import React, { useState, useCallback, ChangeEvent } from 'react'
-import { ACTIVE_MENU, INACTIVE_MENU } from 'mock'
+import React, { useState, useCallback, ChangeEvent, useEffect } from 'react'
 import { Gap } from 'solarxui'
-import MenuCard from 'components/MenuCard'
+import ChefMenuCard from 'components/ChefMenuCard'
 import PageButton from 'components/PageButton'
 import TableWrapper from 'components/TableWrapper'
 import SearchablePageWrapper from 'components/SearchablePageWrapper'
@@ -10,6 +9,8 @@ import SummaryModal from 'components/SummaryModal/index'
 import OrderModal from 'components/OrderModal'
 import { Menu } from 'types/Menu'
 import UploadMenuModal from 'components/UploadMenuModal'
+import MenusStore from 'stores/MenusStore'
+import { useObserver } from 'mobx-react'
 
 export default function MenuPage() {
 	const [summaryModalOpen, setSummaryModalOpen] = useState(false)
@@ -41,7 +42,11 @@ export default function MenuPage() {
 	const openMenuModal = useCallback(() => {
 		setMenuModalOpen(true)
 	}, [])
-	return (
+
+	useEffect(() => {
+		MenusStore.setMenus()
+	}, [])
+	return useObserver(() => (
 		<TableWrapper>
 			<SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} />
 			<UploadMenuModal isOpen={uploadModalOpen} onClose={closeUploadModal} />
@@ -51,14 +56,14 @@ export default function MenuPage() {
 				placeholder="Find your menu...">
 				<PageContainer>
 					<Gap type="vertical" size="20px">
-						{[ACTIVE_MENU, INACTIVE_MENU]
+						{MenusStore.menus
 							.filter(
 								(menu: Menu) =>
 									menu.name.toLowerCase().includes(filterText.toLowerCase()) ||
 									menu.desc.toLowerCase().includes(filterText.toLowerCase()),
 							)
 							.map(item => (
-								<MenuCard key={`${item.name}-${Math.random()}`} menu={item} />
+								<ChefMenuCard key={`${item.name}-${Math.random()}`} menu={item} />
 							))}
 					</Gap>
 				</PageContainer>
@@ -76,12 +81,13 @@ export default function MenuPage() {
 						amount: 1,
 						memo: 'Add more egg',
 						user: {
+							id: '',
 							name: 'Phasin',
-							avatar: '',
+							avatarUrl: '',
 						},
 					},
 				]}
 			/>
 		</TableWrapper>
-	)
+	))
 }

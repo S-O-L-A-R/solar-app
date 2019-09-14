@@ -12,7 +12,7 @@ const CustomerOrderLine = ({ order }: Props) => (
 	<OrderLine
 		title={
 			<Name size="8px">
-				<Photo src={order.user.avatar} size={24} alt="" variant="circle" />
+				<Photo src={order.user.avatarUrl} size={24} alt="" variant="circle" />
 				<div>{order.user.name}</div>
 			</Name>
 		}

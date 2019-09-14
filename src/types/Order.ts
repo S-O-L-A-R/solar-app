@@ -1,9 +1,10 @@
 import { MenuItem } from './Menu'
+import { User } from './User'
 
 export interface Order {
 	user: {
 		name: string
-		avatar: string
+		avatarUrl: string
 	}
 	table: string
 	menus: MenuItem[]

@@ -11,6 +11,8 @@ import { Menu } from 'types/Menu'
 import UploadMenuModal from 'components/UploadMenuModal'
 import MenusStore from 'stores/MenusStore'
 import { useObserver } from 'mobx-react'
+import DraftMenuItemStore from 'stores/DraftMenuItemsStore'
+import { TABLE_NUMBER } from 'mock'
 
 export default function MenuPage() {
 	const [summaryModalOpen, setSummaryModalOpen] = useState(false)
@@ -45,6 +47,7 @@ export default function MenuPage() {
 
 	useEffect(() => {
 		MenusStore.setMenus()
+		DraftMenuItemStore.setDraftMenuItems()
 	}, [])
 	return useObserver(() => (
 		<TableWrapper>
@@ -63,7 +66,11 @@ export default function MenuPage() {
 									menu.desc.toLowerCase().includes(filterText.toLowerCase()),
 							)
 							.map(item => (
-								<CustomerMenuCard key={`${item.name}-${Math.random()}`} menu={item} />
+								<CustomerMenuCard
+									key={`${item.name}-${Math.random()}`}
+									menu={item}
+									tableId={TABLE_NUMBER}
+								/>
 							))}
 					</Gap>
 				</PageContainer>
@@ -81,8 +88,9 @@ export default function MenuPage() {
 						amount: 1,
 						memo: 'Add more egg',
 						user: {
+							id: '',
 							name: 'Phasin',
-							avatar: '',
+							avatarUrl: '',
 						},
 					},
 				]}
