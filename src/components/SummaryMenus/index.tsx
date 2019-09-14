@@ -10,7 +10,12 @@ interface Props {
 }
 
 const Container = styled.div`
-	padding: 16px 0;
+	padding: 12px 0;
+`
+
+const MenuList = styled.div`
+	overflow: scroll;
+	max-height: calc(75vh - 64px - 32px - 24px - 40px - 38px - 28px);
 `
 
 const SummaryMenus = ({ menus }: Props) => {
@@ -25,12 +30,14 @@ const SummaryMenus = ({ menus }: Props) => {
 	}
 	return (
 		<Container>
-			{menus.map(menu => (
-				<div>
-					<SummaryMenuRow {...menu} />
-					<Separator />
-				</div>
-			))}
+			<MenuList>
+				{menus.map(menu => (
+					<div>
+						<SummaryMenuRow {...menu} />
+						<Separator />
+					</div>
+				))}
+			</MenuList>
 			<div className="primary-text">
 				<SummaryMenuRow name="Total" total={totalPrice} amount={totalAmount} />
 			</div>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import { ACTIVE_MENU, INACTIVE_MENU } from 'mock'
 import { Gap } from 'solarxui'
 import MenuCard from 'components/MenuCard'
@@ -11,9 +11,13 @@ import PageContainer from 'components/PageContainer'
 import SummaryModal from 'components/SummaryModal/index'
 
 export default function Menu() {
+	const [summaryModalOpen, setSummaryModalOpen] = useState(true)
+	const closeSummaryModal = useCallback(() => {
+		setSummaryModalOpen(false)
+	}, [summaryModalOpen])
 	return (
 		<TableWrapper>
-			<SummaryModal />
+			<SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} />
 			<SearchablePageWrapper placeholder="Find your menu...">
 				<PageContainer>
 					<Gap type="vertical" size="20px">

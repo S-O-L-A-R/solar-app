@@ -6,7 +6,7 @@ import RLPButton from 'components/RLPButton'
 
 const Container = styled.div`
 	padding: 0 21px;
-	padding-bottom: 34px;
+	padding-bottom: 38px;
 `
 
 const menus = [
@@ -68,31 +68,25 @@ const menus = [
 	},
 ]
 
-const SummaryContainer = styled.div`
-	position: relative;
-	overflow: scroll;
-	max-height: calc(75vh - 64px - 32px - 34px);
-`
+interface Props {
+	isOpen: boolean
+	onClose: () => void
+}
 
-const ButtonContainer = styled.div`
-	position: sticky;
-	bottom: 0;
-`
-
-const SummaryModal = () => {
+const SummaryModal = ({ isOpen, onClose }: Props) => {
 	return (
-		<ClosableModal isOpen={true}>
+		<ClosableModal isOpen={isOpen} onClose={onClose}>
 			<Container>
 				<span className="title">Summary</span>
-				<SummaryContainer>
-					<SummaryMenus menus={menus} />
-					<ButtonContainer>
-						<RLPButton />
-					</ButtonContainer>
-				</SummaryContainer>
+				<SummaryMenus menus={menus} />
+				<RLPButton />
 			</Container>
 		</ClosableModal>
 	)
+}
+
+SummaryModal.defaultProps = {
+	isOpen: false,
 }
 
 export default SummaryModal
