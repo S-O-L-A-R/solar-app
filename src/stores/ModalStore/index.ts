@@ -4,12 +4,12 @@ class ModalStore {
 	@observable
 	public isOpen: boolean = false
 
-	@action
+	@action.bound
 	public open() {
 		this.isOpen = true
 	}
 
-	@action
+	@action.bound
 	public close() {
 		this.isOpen = false
 	}

@@ -1,6 +1,9 @@
-import React, { useCallback, ChangeEvent, useState } from 'react'
+import React, { useCallback, ChangeEvent, useState, useEffect } from 'react'
 import { ImageUploadModal, InputField, TextArea, Gap, Switch, Button } from 'solarxui'
 import styled from 'styled-components'
+import CreateOrEditMenuStore from 'stores/CreateOrEditMenuStore'
+import { useObserver } from 'mobx-react'
+import { get } from 'lodash'
 
 const FormContainer = styled(Gap)`
 	padding: 24px;
@@ -17,12 +20,7 @@ const ButtonContainer = styled.div`
 	padding-top: 4px;
 `
 
-interface Props {
-	isOpen: boolean
-	onClose: () => void
-}
-
-const UploadMenuModal = ({ isOpen, onClose }: Props) => {
+const UploadMenuModal = () => {
 	const [image, setImage] = useState<string | null>(null)
 	const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
 		if (e.target.files && e.target.files.length > 0) {
@@ -30,21 +28,43 @@ const UploadMenuModal = ({ isOpen, onClose }: Props) => {
 			setImage(window.URL.createObjectURL(file))
 		}
 	}, [])
-	return (
-		<ImageUploadModal isOpen={isOpen} image={image} onChange={onChange} onClose={onClose}>
+	useEffect(() => {
+		return () => {
+			CreateOrEditMenuStore.reset()
+		}
+	}, [])
+	const onFieldChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+		CreateOrEditMenuStore.setState(e.target.name, e.target.value)
+	}, [])
+	const onTAC = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
+		CreateOrEditMenuStore.setState(e.target.name, e.target.value)
+	}, [])
+	const onActive = useCallback(({ active }) => CreateOrEditMenuStore.setState('active', active), [])
+	return useObserver(() => (
+		<ImageUploadModal
+			isOpen={CreateOrEditMenuStore.isOpen}
+			image={image || get(CreateOrEditMenuStore, 'menu.thumbnailUrl')}
+			onChange={onChange}
+			onClose={CreateOrEditMenuStore.close}>
 			<FormContainer size="16px" type="vertical">
-				<InputField />
-				<InputField placeholder="Price" />
-				<TextArea />
+				<InputField name="name" onChange={onFieldChange} value={get(CreateOrEditMenuStore, 'menu.name')} />
+				<InputField
+					placeholder="Price"
+					name="price"
+					type="number"
+					onChange={onFieldChange}
+					value={get(CreateOrEditMenuStore, 'menu.price')}
+				/>
+				<TextArea name="desc" onChange={onTAC} value={get(CreateOrEditMenuStore, 'menu.desc')} />
 				<SwitchContainer>
-					<Switch />
+					<Switch onChange={onActive} activeDefault={get(CreateOrEditMenuStore, 'menu.active')} />
 				</SwitchContainer>
 				<ButtonContainer>
-					<Button>Add</Button>
+					<Button onClick={CreateOrEditMenuStore.submit}>Add</Button>
 				</ButtonContainer>
 			</FormContainer>
 		</ImageUploadModal>
-	)
+	))
 }
 
 UploadMenuModal.defaultProps = {

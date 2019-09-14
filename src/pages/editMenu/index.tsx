@@ -1,4 +1,4 @@
-import React, { useState, useCallback, ChangeEvent, useEffect } from 'react'
+import React, { useState, ChangeEvent, useEffect } from 'react'
 import { Gap } from 'solarxui'
 import ChefMenuCard from 'components/ChefMenuCard'
 import PageButton from 'components/PageButton'
@@ -9,6 +9,7 @@ import { Menu } from 'types/Menu'
 import UploadMenuModal from 'components/UploadMenuModal'
 import MenusStore from 'stores/MenusStore'
 import { useObserver } from 'mobx-react'
+import CreateOrEditMenuStore from 'stores/CreateOrEditMenuStore'
 
 export default function MenuPage() {
 	const [filterText, setFilterText] = useState('')
@@ -17,21 +18,13 @@ export default function MenuPage() {
 		setFilterText(e.target.value)
 	}
 
-	const [uploadModalOpen, setUploadModalOpen] = useState(false)
-	const closeUploadModal = useCallback(() => {
-		setUploadModalOpen(false)
-	}, [])
-	const openUploadModal = useCallback(() => {
-		setUploadModalOpen(true)
-	}, [])
-
 	useEffect(() => {
 		MenusStore.setMenus()
 	}, [])
 
 	return useObserver(() => (
 		<TableWrapper>
-			<UploadMenuModal isOpen={uploadModalOpen} onClose={closeUploadModal} />
+			<UploadMenuModal />
 			<SearchablePageWrapper
 				onTextFilterChange={onTextFilterChange}
 				textFilter={filterText}
@@ -49,7 +42,7 @@ export default function MenuPage() {
 							))}
 					</Gap>
 				</PageContainer>
-				<PageButton onClick={openUploadModal}>Add Menu</PageButton>
+				<PageButton onClick={() => CreateOrEditMenuStore.createMenu()}>Add Menu</PageButton>
 			</SearchablePageWrapper>
 		</TableWrapper>
 	))
