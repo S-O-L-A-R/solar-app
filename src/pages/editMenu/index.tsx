@@ -49,7 +49,7 @@ export default function MenuPage() {
 							))}
 					</Gap>
 				</PageContainer>
-				<PageButton onClick={openUploadModal} />
+				<PageButton onClick={openUploadModal}>Add Menu</PageButton>
 			</SearchablePageWrapper>
 		</TableWrapper>
 	))

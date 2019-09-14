@@ -11,6 +11,12 @@ class OrderModalStore extends ModalStore {
 		this.menu = menu
 		this.open()
 	}
+
+	public add() {}
+
+	public remove() {}
+
+	public addNew(memo: string) {}
 }
 
 export default new OrderModalStore()
