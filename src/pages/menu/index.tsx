@@ -62,7 +62,7 @@ export default function MenuPage() {
 							))}
 					</Gap>
 				</PageContainer>
-				<PageButton onClick={openMenuModal} />
+				<PageButton onClick={openSummaryModal} />
 			</SearchablePageWrapper>
 			<OrderModal
 				isOpen={menuModalOpen}
