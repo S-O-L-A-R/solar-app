@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [10.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -25,3 +25,6 @@ jobs:
         CI: true
     - name: GitHub Action for Firebase
       uses: w9jds/firebase-action@v1.0.1
+      env:
+        PROJECT_ID: vaulted-channel-252309
+

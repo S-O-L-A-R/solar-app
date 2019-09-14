@@ -23,12 +23,13 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "typeRoots": [
-      "types",
+      "types"
     ],
     "types": [
       "liff-type"
     ],
-    "noEmit": true
+    "noEmit": true,
+    "resolveJsonModule": true
   },
   "include": [
     "src"
