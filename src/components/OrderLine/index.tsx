@@ -5,14 +5,16 @@ import { localizedDurationFromNow } from 'utils/dateUtils'
 import { Time, Detail, Desc, Sep } from './styled'
 import { Order, MenuItem } from 'types'
 import { isEmpty } from 'lodash'
+import cn from 'classnames'
 
 interface Props {
 	title: ReactNode
 	plugin: (order: MenuItem) => ReactNode
 	order: Order
+	staff?: boolean
 }
 
-export default function OrderLine({ title, plugin, order }: Props) {
+export default function OrderLine({ title, plugin, order, staff }: Props) {
 	return (
 		<Gap type="vertical" size="12px">
 			<Sep>
@@ -24,7 +26,7 @@ export default function OrderLine({ title, plugin, order }: Props) {
 					<Detail className="highlight">
 						<Gap size="8px">
 							<div>
-								<span>{menu.amount}</span>
+								<span className={menu.amount > 0 ? 'primary-text' : ''}>{menu.amount}</span>
 								<span>{`/${menu.total}`}</span>
 							</div>
 							<div>
