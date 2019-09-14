@@ -17,7 +17,6 @@
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "isolatedModules": true,
     "jsx": "react",
     "sourceMap": true,
     "experimentalDecorators": true,
@@ -29,7 +28,7 @@
       "liff-type"
     ],
     "noEmit": true,
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
   },
   "include": [
     "src"

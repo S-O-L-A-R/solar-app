@@ -1,12 +1,10 @@
-import { Order } from 'types'
-
 export const RESTAURANT_TITLE = 'Cool Restaurant'
 
 export const TABLE_NUMBER = 'Table No.9'
 
 export const ACTIVE_MENU = {
 	name: 'Gyu Don',
-	thumbnail: 'https://avatars1.githubusercontent.com/u/10514215?s=460&v=4',
+	thumbnailUrl: 'https://avatars1.githubusercontent.com/u/10514215?s=460&v=4',
 	desc: 'sdadasdasadsads',
 	price: 900,
 	active: true,
@@ -14,7 +12,7 @@ export const ACTIVE_MENU = {
 
 export const INACTIVE_MENU = {
 	name: 'Gyu Don',
-	thumbnail: 'https://avatars1.githubusercontent.com/u/10514215?s=460&v=4',
+	thumbnailUrl: 'https://avatars1.githubusercontent.com/u/10514215?s=460&v=4',
 	desc: 'sdadasdasadsads',
 	price: 900,
 	active: false,
@@ -23,7 +21,7 @@ export const INACTIVE_MENU = {
 export const MOCK_ORDER: Order = {
 	user: {
 		name: 'gunhappy',
-		thumbnail: 'https://avatars1.githubusercontent.com/u/10514215?s=460&v=4',
+		avatar: 'https://avatars1.githubusercontent.com/u/10514215?s=460&v=4',
 	},
 	table: 'no.9',
 	menus: [

@@ -9,6 +9,7 @@ import CustomerMenuCard from 'components/CustomerMenuCard'
 import ChefMenuCard from 'components/ChefMenuCard'
 import PageContainer from 'components/PageContainer'
 import SummaryModal from 'components/SummaryModal/index'
+import OrderModal from 'components/OrderModal'
 
 export default function Menu() {
 	const [summaryModalOpen, setSummaryModalOpen] = useState(true)
@@ -44,6 +45,22 @@ export default function Menu() {
 				</PageContainer>
 				<PageButton onClick={openSummaryModal} />
 			</SearchablePageWrapper>
+			<OrderModal
+				menuName="Gyu don"
+				menuSubtitle="Rice bowl with grilled beef"
+				image="https://img.blognone.com/jobs/prod/310x155/cover/flowaccount-co-ltd.jpg"
+				price={199}
+				draftMenuItems={[
+					{
+						amount: 1,
+						memo: 'Add more egg',
+						user: {
+							name: 'Phasin',
+							avatar: '',
+						},
+					},
+				]}
+			/>
 		</TableWrapper>
 	)
 }
