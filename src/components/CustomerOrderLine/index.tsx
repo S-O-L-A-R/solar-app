@@ -1,9 +1,8 @@
 import React from 'react'
 import OrderLine from 'components/OrderLine'
-import TableNo from 'components/TableNo'
 import { Name, Price } from './styled'
 import { Photo } from 'solarxui'
-import { Order, MenuItem } from 'types'
+import { Order } from 'types'
 
 interface Props {
 	order: Order

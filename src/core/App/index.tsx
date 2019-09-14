@@ -8,9 +8,10 @@ import { PageContainer } from './styled'
 export default function App() {
 	const [state, setState] = useState({ id: '', name: '' })
 	useEffect(() => {
-		liff.bluetooth.requestDevice().then(({ id, name }) => {
-			setState({ id, name: name || '' })
-		})
+		liff.bluetooth &&
+			liff.bluetooth.requestDevice().then(({ id, name }) => {
+				setState({ id, name: name || '' })
+			})
 	}, [])
 	return (
 		<BrowserRouter>

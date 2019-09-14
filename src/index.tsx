@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom'
 import { unregister } from './serviceWorker'
 import { configure as mobxConfigure } from 'mobx'
 import App from 'core/App'
+import mliffx from 'mliffx'
+
+mliffx.init()
 
 mobxConfigure({ enforceActions: 'observed' })
 
