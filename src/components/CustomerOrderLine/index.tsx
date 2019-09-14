@@ -16,7 +16,10 @@ const CustomerOrderLine = ({ order }: Props) => (
 				<div>{order.user.name}</div>
 			</Name>
 		}
-		plugin={menuItem => <Price>{`฿${menuItem.price * menuItem.amount}`}</Price>}
+		plugin={menuItem => (
+			<Price className={menuItem.amount === menuItem.total ? 'primary-text' : ''}>{`฿${menuItem.price *
+				menuItem.total}`}</Price>
+		)}
 		order={order}
 	/>
 )

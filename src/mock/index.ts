@@ -30,7 +30,7 @@ export const MOCK_ORDER: Order = {
 		{
 			name: 'Gyudon',
 			memo: '+dsasd',
-			amount: 1,
+			amount: 9,
 			total: 9,
 			price: 50,
 		},

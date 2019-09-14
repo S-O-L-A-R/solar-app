@@ -23,14 +23,14 @@ export default function OrderLine({ title, plugin, order, staff }: Props) {
 			</Sep>
 			{order.menus.map(menu => (
 				<IHateYouContainer>
-					<Detail className="highlight">
+					<Detail className={cn('highlight', staff && menu.amount === menu.total ? 'grayscale' : '')}>
 						<Gap size="8px">
-							<div>
+							<div className={menu.amount === menu.total ? 'primary-text' : ''}>
 								<span className={menu.amount > 0 ? 'primary-text' : ''}>{menu.amount}</span>
 								<span>{`/${menu.total}`}</span>
 							</div>
 							<div>
-								<div>{menu.name}</div>
+								<div className={menu.amount === menu.total ? 'primary-text' : ''}>{menu.name}</div>
 								{!isEmpty(menu.memo) && <Desc className="gray2-text">{menu.memo}</Desc>}
 							</div>
 						</Gap>
