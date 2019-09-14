@@ -27,15 +27,22 @@ export default function MenuPage() {
 		setSummaryModalOpen(true)
 	}, [])
 
+	const [uploadModalOpen, setUploadModalOpen] = useState(false)
+	const closeUploadModal = useCallback(() => {
+		setUploadModalOpen(false)
+	}, [])
+	const openUploadModal = useCallback(() => {
+		setUploadModalOpen(true)
+	}, [])
+
 	return (
 		<TableWrapper>
 			<SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} />
+			<UploadMenuModal isOpen={uploadModalOpen} onClose={closeUploadModal} />
 			<SearchablePageWrapper
 				onTextFilterChange={onTextFilterChange}
 				textFilter={filterText}
 				placeholder="Find your menu...">
-			<UploadMenuModal isOpen={true} />
-			<SearchablePageWrapper placeholder="Find your menu...">
 				<PageContainer>
 					<Gap type="vertical" size="20px">
 						{[ACTIVE_MENU, INACTIVE_MENU]
@@ -49,7 +56,7 @@ export default function MenuPage() {
 							))}
 					</Gap>
 				</PageContainer>
-				<PageButton onClick={openSummaryModal} />
+				<PageButton onClick={openUploadModal} />
 			</SearchablePageWrapper>
 			{/* <OrderModal
 				menuName="Gyu don"
