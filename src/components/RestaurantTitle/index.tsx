@@ -1,10 +1,13 @@
 import React from 'react'
-import { RESTAURANT_TITLE } from 'mock'
+import RestaurantStore from 'stores/RestaurantStore'
 
-const RestaurantTitle = () => (
-	<h1 className="title" style={{ fontWeight: 'normal' }}>
-		{RESTAURANT_TITLE}
-	</h1>
-)
+const RestaurantTitle = () => {
+	if (!RestaurantStore.restaurant) return null
+	return (
+		<h1 className="title" style={{ fontWeight: 'normal' }}>
+			{RestaurantStore.restaurant.data.name}
+		</h1>
+	)
+}
 
 export default RestaurantTitle
