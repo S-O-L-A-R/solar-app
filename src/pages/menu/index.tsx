@@ -6,6 +6,7 @@ import PageButton from 'components/PageButton'
 import TableWrapper from 'components/TableWrapper'
 import SearchablePageWrapper from 'components/SearchablePageWrapper'
 import CustomerMenuCard from 'components/CustomerMenuCard'
+import ChefMenuCard from 'components/ChefMenuCard'
 import PageContainer from 'components/PageContainer'
 
 export default function Menu() {
@@ -17,9 +18,9 @@ export default function Menu() {
 						<MenuCard menu={ACTIVE_MENU} />
 						<MenuCard menu={INACTIVE_MENU} />
 						<CustomerMenuCard menu={ACTIVE_MENU} />
-						<MenuCard menu={INACTIVE_MENU} />
-						<MenuCard menu={ACTIVE_MENU} />
-						<MenuCard menu={INACTIVE_MENU} />
+						<CustomerMenuCard menu={INACTIVE_MENU} />
+						<ChefMenuCard menu={ACTIVE_MENU} />
+						<ChefMenuCard menu={INACTIVE_MENU} />
 						<MenuCard menu={ACTIVE_MENU} />
 						<MenuCard menu={INACTIVE_MENU} />
 						<MenuCard menu={ACTIVE_MENU} />
