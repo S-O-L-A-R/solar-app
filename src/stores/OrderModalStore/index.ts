@@ -4,7 +4,7 @@ import { Menu } from 'types/Menu'
 
 class OrderModalStore extends ModalStore {
 	@observable
-	menu: Menu | undefined
+	menu?: Menu
 
 	@action.bound
 	public setMenuModal(menu: Menu) {

@@ -2,8 +2,9 @@ import { observable, action, computed } from 'mobx'
 import { Collection, Document } from 'firestorter'
 import { MenuItemV2 } from 'types/Menu'
 import RestaurantStore from 'stores/RestaurantStore'
+import getClient from 'core/api'
 
-class MenusStore {
+class DraftMenuItemStore {
 	@observable
 	public menusCollection?: Collection<Document<MenuItemV2>>
 
@@ -20,6 +21,11 @@ class MenusStore {
 		if (!this.menusCollection || !this.menusCollection.hasDocs) return []
 		return this.menusCollection.docs.map(({ id, data }) => ({ id, ...data }))
 	}
+
+	@action
+	async addDraftMenuItem(data: MenuItemV2) {
+		await getClient().addDraftMenuItem(data)
+	}
 }
 
-export default new MenusStore()
+export default new DraftMenuItemStore()

@@ -1,4 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import { MenuItemV2 } from 'types/Menu'
 
 const headers = {
 	auth: 'Authorization',
@@ -20,5 +21,9 @@ export default class ApiClient {
 	clearToken() {
 		delete this.token
 		delete this.client.defaults.headers.common[headers.auth]
+	}
+
+	async addDraftMenuItem(menu: MenuItemV2) {
+		this.client.post('/add-draft-menu-item', menu)
 	}
 }

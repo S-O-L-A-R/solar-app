@@ -35,6 +35,7 @@ export default function MenuPage() {
 	}, [])
 	return useObserver(() => (
 		<TableWrapper>
+			<OrderModal />
 			<SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} />
 			<SearchablePageWrapper
 				onTextFilterChange={onTextFilterChange}
@@ -59,7 +60,6 @@ export default function MenuPage() {
 				</PageContainer>
 				<PageButton onClick={openSummaryModal} />
 			</SearchablePageWrapper>
-			<OrderModal />
 		</TableWrapper>
 	))
 }
