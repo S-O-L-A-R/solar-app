@@ -5,14 +5,12 @@ import MenuCard from 'components/MenuCard'
 import PageButton from 'components/PageButton'
 import TableWrapper from 'components/TableWrapper'
 import SearchablePageWrapper from 'components/SearchablePageWrapper'
-import CustomerMenuCard from 'components/CustomerMenuCard'
-import ChefMenuCard from 'components/ChefMenuCard'
 import PageContainer from 'components/PageContainer'
 import SummaryModal from 'components/SummaryModal/index'
 import OrderModal from 'components/OrderModal'
 import { Menu } from 'types/Menu'
 
-export default function Menu() {
+export default function MenuPage() {
 	const [summaryModalOpen, setSummaryModalOpen] = useState(true)
 	const [filterText, setFilterText] = useState('')
 
