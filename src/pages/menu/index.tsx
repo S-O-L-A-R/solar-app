@@ -50,6 +50,16 @@ export default function Menu() {
 				menuSubtitle="Rice bowl with grilled beef"
 				image="https://img.blognone.com/jobs/prod/310x155/cover/flowaccount-co-ltd.jpg"
 				price={199}
+				draftMenuItems={[
+					{
+						amount: 1,
+						memo: 'Add more egg',
+						user: {
+							name: 'Phasin',
+							avatar: '',
+						},
+					},
+				]}
 			/>
 		</TableWrapper>
 	)

@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { ImageModal, NumberPicker, InputField, Button, Gap } from 'solarxui'
+import React, { useState, Fragment } from 'react'
+import { ImageModal, NumberPicker, InputField, Button, Gap, Separator } from 'solarxui'
 import {
 	StyledOrderDetail,
 	StyledContainer,
@@ -8,15 +8,17 @@ import {
 	StyledItemPrice,
 	StyledNumberPickerContainer,
 } from './styled'
+import DraftMenuItem from 'components/DraftMenuItem'
 
 interface Props {
 	menuName: string
 	menuSubtitle?: string
 	image: string
 	price: number
+	draftMenuItems?: DraftMenuItem[]
 }
 
-export default function OrderModal({ image, menuName, menuSubtitle, price }: Props) {
+export default function OrderModal({ image, menuName, menuSubtitle, price, draftMenuItems }: Props) {
 	const [isOpen, setIsOpen] = useState(true)
 	const [orderAmount, setOrderAmount] = useState(1)
 
@@ -52,6 +54,14 @@ export default function OrderModal({ image, menuName, menuSubtitle, price }: Pro
 				<Gap type="vertical" size="18px">
 					<InputField placeholder="No onion, non-veg..." />
 					<Button>Add</Button>
+					{!!draftMenuItems && draftMenuItems.length > 0 && (
+						<Fragment>
+							<Separator />
+							{draftMenuItems.map(({ memo, amount, user }) => (
+								<DraftMenuItem key={memo} memo={memo} amount={amount} user={user} />
+							))}
+						</Fragment>
+					)}
 				</Gap>
 			</StyledContainer>
 		</ImageModal>
