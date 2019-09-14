@@ -27,10 +27,10 @@ export default function OrderLine({ title, plugin, order }: Props) {
 								<span>{menu.amount}</span>
 								<span>{`/${menu.total}`}</span>
 							</div>
-							<Gap type="vertical" size="8px">
+							<div>
 								<div>{menu.name}</div>
 								{!isEmpty(menu.memo) && <Desc className="gray2-text">{menu.memo}</Desc>}
-							</Gap>
+							</div>
 						</Gap>
 					</Detail>
 					{plugin(menu)}
