@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Menu } from 'types'
+import { isEmpty } from 'lodash'
 
 const MenuRowContainer = styled.div`
 	display: flex;
@@ -34,21 +34,24 @@ const SinglePrice = styled.div`
 `
 
 interface MenuRowProps {
-	menu: Menu
+	name: string
+	total: number
+	amount: number
+	price?: number
+	memo?: string
 }
 
-const SummaryMenuRow = ({ menu }: MenuRowProps) => {
-	const { name, quantity, price, memo } = menu
+const SummaryMenuRow = ({ name, total, price, memo, amount }: MenuRowProps) => {
 	return (
 		<MenuRowContainer className="highlight">
-			<Quantity>{`${quantity}x`}</Quantity>
+			<Quantity>{`${amount}x`}</Quantity>
 			<NameContainer>
 				<div>{name}</div>
-				{memo && <Memo className="gray2-text">{memo}</Memo>}
+				{!isEmpty(memo) && <Memo className="gray2-text">{memo}</Memo>}
 			</NameContainer>
 			<PriceContainer>
-				<div>{price * quantity}</div>
-				{quantity > 1 && <SinglePrice className="gray2-text">{`(฿${price})`}</SinglePrice>}
+				<div>{total}</div>
+				{amount > 1 && price && <SinglePrice className="gray2-text">{`(฿${price})`}</SinglePrice>}
 			</PriceContainer>
 		</MenuRowContainer>
 	)
