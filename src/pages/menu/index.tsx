@@ -14,10 +14,10 @@ export default function Menu() {
 	const [summaryModalOpen, setSummaryModalOpen] = useState(true)
 	const closeSummaryModal = useCallback(() => {
 		setSummaryModalOpen(false)
-	}, [summaryModalOpen])
+	}, [])
 	const openSummaryModal = useCallback(() => {
 		setSummaryModalOpen(true)
-	}, [summaryModalOpen])
+	}, [])
 	return (
 		<TableWrapper>
 			<SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} />
