@@ -32,7 +32,7 @@ const SummaryMenus = ({ menus }: Props) => {
 		<Container>
 			<MenuList>
 				{menus.map(menu => (
-					<div>
+					<div key={`${menu.name}-${Math.random() * 100}`}>
 						<SummaryMenuRow {...menu} />
 						<Separator />
 					</div>
