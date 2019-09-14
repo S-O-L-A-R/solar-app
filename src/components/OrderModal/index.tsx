@@ -63,7 +63,9 @@ export default function OrderModal() {
 					{!!get(OrderModalStore, 'menu.desc') && (
 						<StyledSubtitle className="gray2-text">{get(OrderModalStore, 'menu.desc')}</StyledSubtitle>
 					)}
-					<StyledItemPrice className="primary-text">{get(OrderModalStore, 'menu.price')}</StyledItemPrice>
+					<StyledItemPrice className="primary-text highlight">
+						{get(OrderModalStore, 'menu.price')}
+					</StyledItemPrice>
 					<StyledNumberPickerContainer>
 						<NumberPicker onIncrease={onIncrease} onDecrease={onDecrease} value={orderAmount} />
 					</StyledNumberPickerContainer>
