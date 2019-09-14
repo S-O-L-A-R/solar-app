@@ -28,5 +28,5 @@ jobs:
       env:
         PROJECT_ID: vaulted-channel-252309
         FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-      run:
-        - firebase deploy
+      run: |
+        firebase deploy
