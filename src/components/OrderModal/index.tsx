@@ -17,10 +17,11 @@ interface Props {
 	image: string
 	price: number
 	draftMenuItems?: DraftMenuItemType[]
+	isOpen: boolean
+	onClose: () => void
 }
 
-export default function OrderModal({ image, menuName, menuSubtitle, price, draftMenuItems }: Props) {
-	const [isOpen, setIsOpen] = useState(true)
+export default function OrderModal({ image, menuName, menuSubtitle, price, draftMenuItems, isOpen, onClose }: Props) {
 	const [orderAmount, setOrderAmount] = useState(1)
 
 	const onIncrease = () => {
@@ -31,14 +32,6 @@ export default function OrderModal({ image, menuName, menuSubtitle, price, draft
 		if (orderAmount > 0) {
 			setOrderAmount(orderAmount - 1)
 		}
-	}
-
-	const onClose = () => {
-		setIsOpen(false)
-	}
-
-	if (!isOpen) {
-		return null
 	}
 
 	return (
@@ -67,4 +60,8 @@ export default function OrderModal({ image, menuName, menuSubtitle, price, draft
 			</StyledContainer>
 		</ImageModal>
 	)
+}
+
+OrderModal.defaultProps = {
+	isOpen: false,
 }
