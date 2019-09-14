@@ -12,3 +12,21 @@ export interface Menu {
 	price: number
 	active: boolean
 }
+
+export interface MenuItem {
+	name: string
+	memo: string
+	amount: number
+	total: number
+	price: number
+}
+
+export interface Order {
+	user: {
+		name: string
+		thumbnail: string
+	}
+	table: string
+	menus: MenuItem[]
+	timestamp: number
+}
