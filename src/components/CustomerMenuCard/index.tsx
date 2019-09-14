@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react'
 import MenuCard from 'components/MenuCard'
 import { Menu } from 'types'
 import { PlusButton } from 'solarxui'
-import { Container } from './styled'
+import { Container, UsersContainer } from './styled'
 
 interface Props {
 	menu: Menu
@@ -15,7 +15,7 @@ export default function SMC({ menu }: Props) {
 			menu={menu}
 			plugins={
 				<Container>
-					<div />
+					<UsersContainer />
 					<PlusButton size={32} />
 				</Container>
 			}
