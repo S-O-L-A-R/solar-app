@@ -13,6 +13,7 @@ const CustomerOrderLine = ({ order }: Props) => (
 		title={
 			<Name size="8px">
 				<Photo src={order.user.thumbnail} size={24} alt="" variant="circle" />
+				<div>{order.user.name}</div>
 			</Name>
 		}
 		plugin={menuItem => <Price>{`฿${menuItem.price * menuItem.amount}`}</Price>}
