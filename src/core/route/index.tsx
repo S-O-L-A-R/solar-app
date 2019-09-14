@@ -14,6 +14,8 @@ const SmartRouting = () => {
 			return <Redirect to={`/menu${search}`} />
 		case 'me.order':
 			return <Redirect to={`/order${search}`} />
+		case 'test':
+			return <Redirect to="test" />
 		default:
 			return <Redirect to="/some-where" />
 	}
@@ -24,6 +26,7 @@ export default function Routes() {
 		<Switch>
 			<Route path="/menu" component={loadable(() => import(/* webpackChunkName: 'menu' */ 'pages/menu'))} />
 			<Route path="/order" component={loadable(() => import(/* webpackChunkName: 'order' */ 'pages/order'))} />
+			<Route path="/test" component={loadable(() => import(/* webpackChunkName: 'test' */ 'pages/test'))} />
 			<Route path="/" component={SmartRouting} />
 			<Route component={loadable(() => import(/* webpackChunkName: 'not found' */ 'components/NotFound'))} />
 		</Switch>
