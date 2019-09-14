@@ -17,6 +17,8 @@
     "axios": "0.19.0",
     "classnames": "^2.2.6",
     "dayjs": "^1.8.16",
+    "firebase": "^6.6.1",
+    "firestorter": "^1.2.2",
     "mliffx": "^1.0.2",
     "mobx": "5.13.0",
     "mobx-react": "^6.1.3",

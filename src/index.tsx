@@ -5,6 +5,17 @@ import { configure as mobxConfigure } from 'mobx'
 import App from 'core/App'
 import mliffx from 'mliffx'
 import * as Sentry from '@sentry/browser'
+import firebase from 'firebase'
+import 'firebase/firestore'
+import { initFirestorter } from 'firestorter'
+
+firebase.initializeApp({
+	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+})
+
+initFirestorter({ firebase: firebase })
 
 Sentry.init({ dsn: 'https://0e233b46197a4a4f967942af01897277@sentry.io/1727239' })
 
