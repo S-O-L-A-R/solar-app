@@ -13,8 +13,8 @@ export default () => {
 	return useObserver(() => (
 		<div>
 			<h1>LIFFsdsadasFF</h1>
-			<h5>{store.userProfile && store.userProfile.value}</h5>
-			<h5>{store.accessToken && store.accessToken.value}</h5>
+			<h5>{store.userProfile && JSON.stringify(store.userProfile.value)}</h5>
+			<h5>{store.accessToken && JSON.stringify(store.accessToken.value)}</h5>
 			{store.error && <span>{store.error.message}/</span>}
 		</div>
 	))
