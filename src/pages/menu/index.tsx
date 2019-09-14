@@ -9,9 +9,10 @@ import PageContainer from 'components/PageContainer'
 import SummaryModal from 'components/SummaryModal/index'
 import OrderModal from 'components/OrderModal'
 import { Menu } from 'types/Menu'
+import UploadMenuModal from 'components/UploadMenuModal'
 
 export default function MenuPage() {
-	const [summaryModalOpen, setSummaryModalOpen] = useState(true)
+	const [summaryModalOpen, setSummaryModalOpen] = useState(false)
 	const [filterText, setFilterText] = useState('')
 
 	const onTextFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,6 +34,8 @@ export default function MenuPage() {
 				onTextFilterChange={onTextFilterChange}
 				textFilter={filterText}
 				placeholder="Find your menu...">
+			<UploadMenuModal isOpen={true} />
+			<SearchablePageWrapper placeholder="Find your menu...">
 				<PageContainer>
 					<Gap type="vertical" size="20px">
 						{[ACTIVE_MENU, INACTIVE_MENU]
@@ -48,7 +51,7 @@ export default function MenuPage() {
 				</PageContainer>
 				<PageButton onClick={openSummaryModal} />
 			</SearchablePageWrapper>
-			<OrderModal
+			{/* <OrderModal
 				menuName="Gyu don"
 				menuSubtitle="Rice bowl with grilled beef"
 				image="https://img.blognone.com/jobs/prod/310x155/cover/flowaccount-co-ltd.jpg"
@@ -63,7 +66,7 @@ export default function MenuPage() {
 						},
 					},
 				]}
-			/>
+			/> */}
 		</TableWrapper>
 	)
 }
