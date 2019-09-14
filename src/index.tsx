@@ -4,6 +4,9 @@ import { unregister } from './serviceWorker'
 import { configure as mobxConfigure } from 'mobx'
 import App from 'core/App'
 import mliffx from 'mliffx'
+import * as Sentry from '@sentry/browser'
+
+Sentry.init({ dsn: 'https://0e233b46197a4a4f967942af01897277@sentry.io/1727239' })
 
 mliffx.init()
 

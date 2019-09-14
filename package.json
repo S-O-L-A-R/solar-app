@@ -7,6 +7,7 @@
   "private": true,
   "dependencies": {
     "@loadable/component": "5.10.2",
+    "@sentry/browser": "^5.6.3",
     "@types/classnames": "^2.2.9",
     "@types/jest": "24.0.18",
     "@types/node": "12.7.4",

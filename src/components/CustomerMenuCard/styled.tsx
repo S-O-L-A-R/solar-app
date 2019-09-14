@@ -7,3 +7,13 @@ export const Container = styled(IHateYouContainer)`
 		align-self: flex-end;
 	}
 `
+
+export const UsersContainer = styled.div`
+	padding-right: 8px;
+	display: flex;
+	flex-wrap: nowrap;
+	> * {
+		flex: 1;
+		line-height: 18px;
+	}
+`
