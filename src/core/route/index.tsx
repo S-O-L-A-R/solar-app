@@ -11,7 +11,7 @@ export default function Routes() {
 			/>
 			<Route
 				path="/?route=me.order"
-				component={loadable(() => import(/* webpackChunkName: 'menu' */ 'pages/order'))}
+				component={loadable(() => import(/* webpackChunkName: 'order' */ 'pages/order'))}
 			/>
 			<Route component={loadable(() => import(/* webpackChunkName: 'not found' */ 'components/NotFound'))} />
 		</Switch>
