@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, ChangeEvent } from 'react'
 import { ACTIVE_MENU, INACTIVE_MENU } from 'mock'
 import { Gap } from 'solarxui'
 import MenuCard from 'components/MenuCard'
@@ -10,37 +10,42 @@ import ChefMenuCard from 'components/ChefMenuCard'
 import PageContainer from 'components/PageContainer'
 import SummaryModal from 'components/SummaryModal/index'
 import OrderModal from 'components/OrderModal'
+import { Menu } from 'types/Menu'
 
 export default function Menu() {
 	const [summaryModalOpen, setSummaryModalOpen] = useState(true)
+	const [filterText, setFilterText] = useState('')
+
 	const closeSummaryModal = useCallback(() => {
 		setSummaryModalOpen(false)
 	}, [])
+
 	const openSummaryModal = useCallback(() => {
 		setSummaryModalOpen(true)
 	}, [])
+
+	const onTextFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setFilterText(e.target.value)
+	}
+
 	return (
 		<TableWrapper>
 			<SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} />
-			<SearchablePageWrapper placeholder="Find your menu...">
+			<SearchablePageWrapper
+				placeholder="Find your menu..."
+				textFilter={filterText}
+				onTextFilterChange={onTextFilterChange}>
 				<PageContainer>
 					<Gap type="vertical" size="20px">
-						<MenuCard menu={ACTIVE_MENU} />
-						<MenuCard menu={INACTIVE_MENU} />
-						<CustomerMenuCard menu={ACTIVE_MENU} />
-						<CustomerMenuCard menu={INACTIVE_MENU} />
-						<ChefMenuCard menu={ACTIVE_MENU} />
-						<ChefMenuCard menu={INACTIVE_MENU} />
-						<MenuCard menu={ACTIVE_MENU} />
-						<MenuCard menu={INACTIVE_MENU} />
-						<MenuCard menu={ACTIVE_MENU} />
-						<MenuCard menu={INACTIVE_MENU} />
-						<MenuCard menu={ACTIVE_MENU} />
-						<MenuCard menu={INACTIVE_MENU} />
-						<MenuCard menu={ACTIVE_MENU} />
-						<MenuCard menu={INACTIVE_MENU} />
-						<MenuCard menu={ACTIVE_MENU} />
-						<MenuCard menu={INACTIVE_MENU} />
+						{[ACTIVE_MENU, INACTIVE_MENU]
+							.filter(
+								(menu: Menu) =>
+									menu.name.toLowerCase().includes(filterText.toLowerCase()) ||
+									menu.desc.toLowerCase().includes(filterText.toLowerCase()),
+							)
+							.map(item => (
+								<MenuCard key={`${item.name}-${Math.random()}`} menu={item} />
+							))}
 					</Gap>
 				</PageContainer>
 				<PageButton onClick={openSummaryModal} />
