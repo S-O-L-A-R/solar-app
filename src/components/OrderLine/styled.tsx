@@ -18,3 +18,13 @@ export const Desc = styled.div`
 export const Sep = styled(IHateYouContainer)`
 	align-items: center;
 `
+
+export const Wrapper = styled.div`
+	&:not(:last-child) {
+		padding-bottom: 16px;
+		border-bottom: 1px solid ${gray[1]};
+	}
+	&:not(:first-child) {
+		padding-top: 16px;
+	}
+`

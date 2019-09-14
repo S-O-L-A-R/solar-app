@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { HTMLAttributes } from 'react'
 import { No } from './styled'
 
-interface Props {
+interface Props extends HTMLAttributes<HTMLDivElement> {
 	tableName: string
 }
 
-const TableNo = ({ tableName }: Props) => <No className="highlight">{tableName}</No>
+const TableNo = ({ tableName, ...props }: Props) => (
+	<No className="highlight" {...props}>
+		{tableName}
+	</No>
+)
 
 export default TableNo
