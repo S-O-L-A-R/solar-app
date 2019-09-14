@@ -29,14 +29,6 @@ export default function MenuPage() {
 		setSummaryModalOpen(true)
 	}, [])
 
-	const [menuModalOpen, setMenuModalOpen] = useState(false)
-	const closeMenuModal = useCallback(() => {
-		setMenuModalOpen(false)
-	}, [])
-	const openMenuModal = useCallback(() => {
-		setMenuModalOpen(true)
-	}, [])
-
 	useEffect(() => {
 		MenusStore.setMenus()
 		DraftMenuItemStore.setDraftMenuItems()

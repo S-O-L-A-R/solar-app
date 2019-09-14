@@ -9,9 +9,7 @@ import {
 	StyledNumberPickerContainer,
 } from './styled'
 import DraftMenuItem from 'components/DraftMenuItem'
-import { DraftMenuItemType } from 'types/Menu'
 import OrderModalStore from 'stores/OrderModalStore'
-import { Menu } from 'types/Menu'
 import DraftMenuItemsStore from 'stores/DraftMenuItemsStore'
 import { User } from 'types/User'
 import { useObserver } from 'mobx-react'

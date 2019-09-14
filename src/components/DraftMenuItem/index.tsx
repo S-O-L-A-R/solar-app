@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { StyledDraftMenuItemContainer, StyledMemo, StyledAmount } from './styled'
 import { NumberPicker, Gap, Photo } from 'solarxui'
-import { DraftMenuItemType } from 'types/Menu'
 import { T } from './styled'
 
 interface P {
