@@ -8,6 +8,7 @@ import { User } from 'types/User'
 import mliffx from 'mliffx'
 import { useObserver } from 'mobx-react'
 import { get } from 'lodash'
+import OrderModalStore from 'stores/OrderModalStore'
 
 interface Props {
 	menu: Menu
@@ -48,6 +49,7 @@ export default function SMC({ menu, tableId }: Props) {
 	return useObserver(() => (
 		<MenuCard
 			menu={menu}
+			onClick={() => OrderModalStore.setMenuModal(menu)}
 			plugins={
 				<Container>
 					<UsersContainer>

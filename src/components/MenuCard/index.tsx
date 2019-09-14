@@ -6,11 +6,12 @@ import { Menu } from 'types/Menu'
 interface Props {
 	menu: Menu
 	plugins?: ReactNode
+	onClick?: () => void
 }
 
-const MenuCard = ({ menu: { thumbnailUrl, name, desc, price, active }, plugins }: Props) => {
+const MenuCard = ({ menu: { thumbnailUrl, name, desc, price, active }, plugins, onClick }: Props) => {
 	return (
-		<Card>
+		<Card onClick={onClick}>
 			<Gap size="18px">
 				<Photo src={thumbnailUrl} alt="" size={95} variant="normal" className={!active ? 'grayscale' : ''} />
 				<Info>

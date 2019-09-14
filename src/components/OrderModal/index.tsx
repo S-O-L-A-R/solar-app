@@ -10,18 +10,39 @@ import {
 } from './styled'
 import DraftMenuItem from 'components/DraftMenuItem'
 import { DraftMenuItemType } from 'types/Menu'
+import OrderModalStore from 'stores/OrderModalStore'
+import { Menu } from 'types/Menu'
+import DraftMenuItemsStore from 'stores/DraftMenuItemsStore'
+import { User } from 'types/User'
+import { useObserver } from 'mobx-react'
+import { get } from 'lodash'
 
-interface Props {
-	menuName: string
-	menuSubtitle?: string
-	image: string
-	price: number
-	draftMenuItems?: DraftMenuItemType[]
-	isOpen: boolean
-	onClose: () => void
+interface EnhancedOrderUser extends User {
+	quantity: number
 }
 
-export default function OrderModal({ image, menuName, menuSubtitle, price, draftMenuItems, isOpen, onClose }: Props) {
+function grouping(id: string) {
+	const data = DraftMenuItemsStore.menus.filter(({ menuId }) => menuId === id)
+	const stat = data.reduce(
+		(obj, curr) => {
+			obj[curr.memo] = {
+				memo: curr.memo,
+				users: [
+					{
+						...curr.user,
+						quantity: curr.quantity,
+					},
+					...obj[curr.memo].users,
+				],
+			} || { users: [], memo: '' }
+			return obj
+		},
+		{} as { [type: string]: { users: EnhancedOrderUser[]; memo: string } },
+	)
+	return Object.values(stat)
+}
+
+export default function OrderModal() {
 	const [orderAmount, setOrderAmount] = useState(1)
 
 	const onIncrease = () => {
@@ -33,14 +54,18 @@ export default function OrderModal({ image, menuName, menuSubtitle, price, draft
 			setOrderAmount(orderAmount - 1)
 		}
 	}
-
-	return (
-		<ImageModal src={image} onClose={onClose} isOpen={isOpen}>
+	return useObserver(() => (
+		<ImageModal
+			src={get(OrderModalStore, 'menu.thumbnailUrl')}
+			onClose={() => OrderModalStore.close()}
+			isOpen={OrderModalStore.isOpen}>
 			<StyledContainer>
 				<StyledOrderDetail className="title">
-					<StyledMenuName>{menuName}</StyledMenuName>
-					{!!menuSubtitle && <StyledSubtitle className="gray2-text">{menuSubtitle}</StyledSubtitle>}
-					<StyledItemPrice className="primary-text">{price}</StyledItemPrice>
+					<StyledMenuName>{get(OrderModalStore, 'menu.name')}</StyledMenuName>
+					{!!get(OrderModalStore, 'menu.desc') && (
+						<StyledSubtitle className="gray2-text">{get(OrderModalStore, 'menu.desc')}</StyledSubtitle>
+					)}
+					<StyledItemPrice className="primary-text">{get(OrderModalStore, 'menu.price')}</StyledItemPrice>
 					<StyledNumberPickerContainer>
 						<NumberPicker onIncrease={onIncrease} onDecrease={onDecrease} value={orderAmount} />
 					</StyledNumberPickerContainer>
@@ -48,18 +73,18 @@ export default function OrderModal({ image, menuName, menuSubtitle, price, draft
 				<Gap type="vertical" size="18px">
 					<InputField placeholder="No onion, non-veg..." />
 					<Button>Add</Button>
-					{!!draftMenuItems && draftMenuItems.length > 0 && (
+					{grouping(get(OrderModalStore, 'menu.desc')).length > 0 && (
 						<Fragment>
 							<Separator />
-							{draftMenuItems.map(({ memo, amount, user }) => (
-								<DraftMenuItem key={memo} memo={memo} amount={amount} user={user} />
+							{grouping(get(OrderModalStore, 'menu.desc')).map(({ memo, users }) => (
+								<DraftMenuItem key={memo} memo={memo} users={users} amount={0} />
 							))}
 						</Fragment>
 					)}
 				</Gap>
 			</StyledContainer>
 		</ImageModal>
-	)
+	))
 }
 
 OrderModal.defaultProps = {

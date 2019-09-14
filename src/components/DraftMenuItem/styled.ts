@@ -13,3 +13,7 @@ export const StyledMemo = styled.div`
 export const StyledAmount = styled.div`
 	grid-area: 1/2/2/3;
 `
+
+export const T = styled.div`
+	font-size: 12px;
+`

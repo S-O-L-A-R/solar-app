@@ -8,7 +8,6 @@ import PageContainer from 'components/PageContainer'
 import SummaryModal from 'components/SummaryModal/index'
 import OrderModal from 'components/OrderModal'
 import { Menu } from 'types/Menu'
-import UploadMenuModal from 'components/UploadMenuModal'
 import MenusStore from 'stores/MenusStore'
 import { useObserver } from 'mobx-react'
 import DraftMenuItemStore from 'stores/DraftMenuItemsStore'
@@ -30,13 +29,6 @@ export default function MenuPage() {
 		setSummaryModalOpen(true)
 	}, [])
 
-	const [uploadModalOpen, setUploadModalOpen] = useState(false)
-	const closeUploadModal = useCallback(() => {
-		setUploadModalOpen(false)
-	}, [])
-	const openUploadModal = useCallback(() => {
-		setUploadModalOpen(true)
-	}, [])
 	const [menuModalOpen, setMenuModalOpen] = useState(false)
 	const closeMenuModal = useCallback(() => {
 		setMenuModalOpen(false)
@@ -52,7 +44,6 @@ export default function MenuPage() {
 	return useObserver(() => (
 		<TableWrapper>
 			<SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} />
-			<UploadMenuModal isOpen={uploadModalOpen} onClose={closeUploadModal} />
 			<SearchablePageWrapper
 				onTextFilterChange={onTextFilterChange}
 				textFilter={filterText}
@@ -76,25 +67,7 @@ export default function MenuPage() {
 				</PageContainer>
 				<PageButton onClick={openSummaryModal} />
 			</SearchablePageWrapper>
-			<OrderModal
-				isOpen={menuModalOpen}
-				onClose={closeMenuModal}
-				menuName="Gyu don"
-				menuSubtitle="Rice bowl with grilled beef"
-				image="https://img.blognone.com/jobs/prod/310x155/cover/flowaccount-co-ltd.jpg"
-				price={199}
-				draftMenuItems={[
-					{
-						amount: 1,
-						memo: 'Add more egg',
-						user: {
-							id: '',
-							name: 'Phasin',
-							avatarUrl: '',
-						},
-					},
-				]}
-			/>
+			<OrderModal />
 		</TableWrapper>
 	))
 }
