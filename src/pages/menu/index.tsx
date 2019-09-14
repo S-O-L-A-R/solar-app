@@ -34,7 +34,13 @@ export default function MenuPage() {
 	const openUploadModal = useCallback(() => {
 		setUploadModalOpen(true)
 	}, [])
-
+	const [menuModalOpen, setMenuModalOpen] = useState(false)
+	const closeMenuModal = useCallback(() => {
+		setMenuModalOpen(false)
+	}, [])
+	const openMenuModal = useCallback(() => {
+		setMenuModalOpen(true)
+	}, [])
 	return (
 		<TableWrapper>
 			<SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} />
@@ -56,9 +62,11 @@ export default function MenuPage() {
 							))}
 					</Gap>
 				</PageContainer>
-				<PageButton onClick={openUploadModal} />
+				<PageButton onClick={openMenuModal} />
 			</SearchablePageWrapper>
-			{/* <OrderModal
+			<OrderModal
+				isOpen={menuModalOpen}
+				onClose={closeMenuModal}
 				menuName="Gyu don"
 				menuSubtitle="Rice bowl with grilled beef"
 				image="https://img.blognone.com/jobs/prod/310x155/cover/flowaccount-co-ltd.jpg"
@@ -73,7 +81,7 @@ export default function MenuPage() {
 						},
 					},
 				]}
-			/> */}
+			/>
 		</TableWrapper>
 	)
 }

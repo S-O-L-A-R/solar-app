@@ -9,10 +9,15 @@ import PageContainer from 'components/PageContainer'
 import SummaryModal from 'components/SummaryModal/index'
 import OrderModal from 'components/OrderModal'
 import { Menu } from 'types/Menu'
+import UploadMenuModal from 'components/UploadMenuModal'
 
 export default function MenuPage() {
-	const [summaryModalOpen, setSummaryModalOpen] = useState(true)
+	const [summaryModalOpen, setSummaryModalOpen] = useState(false)
 	const [filterText, setFilterText] = useState('')
+
+	const onTextFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setFilterText(e.target.value)
+	}
 
 	const closeSummaryModal = useCallback(() => {
 		setSummaryModalOpen(false)
@@ -22,17 +27,28 @@ export default function MenuPage() {
 		setSummaryModalOpen(true)
 	}, [])
 
-	const onTextFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
-		setFilterText(e.target.value)
-	}
-
+	const [uploadModalOpen, setUploadModalOpen] = useState(false)
+	const closeUploadModal = useCallback(() => {
+		setUploadModalOpen(false)
+	}, [])
+	const openUploadModal = useCallback(() => {
+		setUploadModalOpen(true)
+	}, [])
+	const [menuModalOpen, setMenuModalOpen] = useState(false)
+	const closeMenuModal = useCallback(() => {
+		setMenuModalOpen(false)
+	}, [])
+	const openMenuModal = useCallback(() => {
+		setMenuModalOpen(true)
+	}, [])
 	return (
 		<TableWrapper>
 			<SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} />
+			<UploadMenuModal isOpen={uploadModalOpen} onClose={closeUploadModal} />
 			<SearchablePageWrapper
-				placeholder="Find your menu..."
+				onTextFilterChange={onTextFilterChange}
 				textFilter={filterText}
-				onTextFilterChange={onTextFilterChange}>
+				placeholder="Find your menu...">
 				<PageContainer>
 					<Gap type="vertical" size="20px">
 						{[ACTIVE_MENU, INACTIVE_MENU]
@@ -46,9 +62,11 @@ export default function MenuPage() {
 							))}
 					</Gap>
 				</PageContainer>
-				<PageButton onClick={openSummaryModal} />
+				<PageButton onClick={openMenuModal} />
 			</SearchablePageWrapper>
 			<OrderModal
+				isOpen={menuModalOpen}
+				onClose={closeMenuModal}
 				menuName="Gyu don"
 				menuSubtitle="Rice bowl with grilled beef"
 				image="https://img.blognone.com/jobs/prod/310x155/cover/flowaccount-co-ltd.jpg"
