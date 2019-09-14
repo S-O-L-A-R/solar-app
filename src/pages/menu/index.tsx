@@ -15,6 +15,9 @@ export default function Menu() {
 	const closeSummaryModal = useCallback(() => {
 		setSummaryModalOpen(false)
 	}, [summaryModalOpen])
+	const openSummaryModal = useCallback(() => {
+		setSummaryModalOpen(true)
+	}, [summaryModalOpen])
 	return (
 		<TableWrapper>
 			<SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} />
@@ -39,7 +42,7 @@ export default function Menu() {
 						<MenuCard menu={INACTIVE_MENU} />
 					</Gap>
 				</PageContainer>
-				<PageButton />
+				<PageButton onClick={openSummaryModal} />
 			</SearchablePageWrapper>
 		</TableWrapper>
 	)
