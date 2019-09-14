@@ -4,6 +4,7 @@ import { SearchBox } from 'solarxui'
 import { TABLE_NUMBER, ACTIVE_MENU, INACTIVE_MENU } from 'mock'
 import { Gap } from 'solarxui'
 import MenuCard from 'components/MenuCard'
+import PageButton from 'components/PageButton'
 import { Body, SearchContainer } from './styled'
 
 export default function Menu() {
@@ -32,6 +33,7 @@ export default function Menu() {
 					<MenuCard menu={ACTIVE_MENU} />
 					<MenuCard menu={INACTIVE_MENU} />
 				</Gap>
+				<PageButton />
 			</Body>
 		</div>
 	)
