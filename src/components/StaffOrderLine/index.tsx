@@ -1,6 +1,5 @@
 import React from 'react'
 import OrderLine from 'components/OrderLine'
-import { Order } from 'types'
 import { Button, Gap, UndoButton } from 'solarxui'
 import { ButtonContainer, TableName } from './styled'
 

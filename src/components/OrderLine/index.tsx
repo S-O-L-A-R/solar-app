@@ -3,7 +3,6 @@ import { Gap } from 'solarxui'
 import IHateYouContainer from 'components/IHateYouContainer'
 import { localizedDurationFromNow } from 'utils/dateUtils'
 import { Time, Detail, Desc, Sep, Wrapper } from './styled'
-import { Order, MenuItem } from 'types'
 import { isEmpty } from 'lodash'
 import cn from 'classnames'
 
