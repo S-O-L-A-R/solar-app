@@ -95,7 +95,7 @@ export default function OrderModal() {
 				avatarUrl: lineUser.pictureUrl,
 			},
 		})
-		await SummaryModalStore.getSummary(lineUser.userId)
+		SummaryModalStore.getSummary(lineUser.userId)
 		setOrderAmount(1)
 		setMemo('')
 		OrderModalStore.close()
