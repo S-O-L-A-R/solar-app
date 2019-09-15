@@ -51,7 +51,7 @@ export default function MenuPage() {
 								)
 								.map(item => (
 									<CustomerMenuCard
-										key={`${item.name}-${Math.random()}`}
+										key={`${item.name}-${Math.random() * 100}`}
 										menu={item}
 										tableId={TABLE_NUMBER}
 									/>

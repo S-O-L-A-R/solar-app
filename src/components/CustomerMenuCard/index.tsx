@@ -52,7 +52,7 @@ export default function SMC({ menu, tableId }: Props) {
 				<Container>
 					<UsersContainer>
 						{getGroupData(tableId, menu).map(({ user, quantity }) => (
-							<IdiotBadge user={user} quantity={quantity} />
+							<IdiotBadge key={`${tableId}-${Math.random() * 100}`} user={user} quantity={quantity} />
 						))}
 					</UsersContainer>
 					<PlusButton size={32} />

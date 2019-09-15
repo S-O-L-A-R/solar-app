@@ -22,7 +22,7 @@ interface P {
 export default function DraftMenuItem({ memo, users }: P) {
 	const lineUser = useUser()
 	const user = users.find(({ id }) => id === (lineUser && lineUser.userId))
-	const [draftAmount, setdraftAmount] = useState(user ? user.quantity : 0)
+	const [draftAmount, setdraftAmount] = useState(!!user ? get(user, 'quantity', 0) : 0)
 
 	const onIncrease = async () => {
 		setdraftAmount(draftAmount + 1)
@@ -58,13 +58,13 @@ export default function DraftMenuItem({ memo, users }: P) {
 
 	return (
 		<StyledDraftMenuItemContainer>
-			<StyledMemo>{memo}</StyledMemo>
+			<StyledMemo>{memo || '-'}</StyledMemo>
 			<StyledAmount>
 				<NumberPicker onIncrease={onIncrease} onDecrease={onDecrease} value={draftAmount} />
 			</StyledAmount>
 			<StyledDiv>
 				{users
-					.filter(({ id }) => id !== (lineUser && lineUser.userId))
+					.filter(({ id }) => id !== (!!lineUser && lineUser.userId))
 					.map(({ quantity, avatarUrl, name }) => (
 						<T className="gray2-text">
 							<Gap size="8px">
