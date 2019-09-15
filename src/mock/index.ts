@@ -7,7 +7,7 @@ export const MOCK_ORDER: Order = {
 		name: 'gunhappy',
 		avatarUrl: 'https://avatars1.githubusercontent.com/u/10514215?s=460&v=4',
 	},
-	table: 'no.9',
+	table: '9',
 	menus: [
 		{
 			name: 'Gyudon',

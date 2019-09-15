@@ -11,7 +11,7 @@ import SimpleTextWrapper from 'components/SimpleTextWrapper'
 export default function Order() {
 	const link = useLink('/menu')
 	return (
-		<SimpleTextWrapper text="kitchen">
+		<SimpleTextWrapper text="Kitchen">
 			<PageContainer>
 				<CustomerOrderLine order={MOCK_ORDER} />
 				<StaffOrderLine order={MOCK_ORDER} />
