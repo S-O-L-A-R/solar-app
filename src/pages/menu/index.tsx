@@ -14,26 +14,22 @@ import { useObserver } from 'mobx-react'
 import DraftMenuItemStore from 'stores/DraftMenuItemsStore'
 import { TABLE_NUMBER } from 'mock'
 import SummaryModalStore from 'stores/SummaryModalStore'
+import useUser from 'hooks/useUser'
 
 export default function MenuPage() {
 	const [filterText, setFilterText] = useState('')
-
 	const onTextFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setFilterText(e.target.value)
 	}
 
 	useEffect(() => {
-		OrderStore.setOrders()
 		MenusStore.setMenus()
 		DraftMenuItemStore.setDraftMenuItems()
 	}, [])
 
+	const lineUser = useUser()
+
 	return useObserver(() => {
-		const order = OrderStore.order
-		let totalAmount = 0
-		if (order && order.items) {
-			totalAmount = Object.values(order.items).reduce((sum, menuItem) => sum + menuItem.amount, 0)
-		}
 		return (
 			<TableWrapper>
 				<SummaryModal />
@@ -58,14 +54,7 @@ export default function MenuPage() {
 								))}
 						</Gap>
 					</PageContainer>
-					{order && totalAmount > 0 && (
-						<PageButton
-							onClick={() => {
-								if (order) {
-									SummaryModalStore.setSummaryModalStore(order)
-								}
-							}}>{`฿${totalAmount} Order`}</PageButton>
-					)}
+					<PageButton onClick={() => SummaryModalStore.getSummary(lineUser.userId)}>{`Order`}</PageButton>
 				</SearchablePageWrapper>
 				<OrderModal />
 			</TableWrapper>
