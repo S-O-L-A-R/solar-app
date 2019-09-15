@@ -26,6 +26,11 @@ class DraftMenuItemStore {
 	async addDraftMenuItem(data: MenuItemV2) {
 		await getClient().addDraftMenuItem(data)
 	}
+
+	@action
+	async dercrese(data: MenuItemV2) {
+		await getClient().deleteMenuItem(data)
+	}
 }
 
 export default new DraftMenuItemStore()

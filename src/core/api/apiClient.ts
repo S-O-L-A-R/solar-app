@@ -26,4 +26,10 @@ export default class ApiClient {
 	async addDraftMenuItem(menu: MenuItemV2) {
 		this.client.post('/rms-ms/v1/menuitem', menu)
 	}
+
+	async deleteMenuItem(menu: MenuItemV2) {
+		this.client.delete('/rms-ms/v1/menuitem', {
+			data: menu,
+		})
+	}
 }

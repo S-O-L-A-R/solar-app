@@ -3,7 +3,10 @@ import { StyledDraftMenuItemContainer, StyledMemo, StyledAmount } from './styled
 import { NumberPicker, Gap, Photo } from 'solarxui'
 import mliffx from 'mliffx'
 import { get } from 'lodash'
+import DraftMenuItemsStore from 'stores/DraftMenuItemsStore'
+import { TABLE_NUMBER } from 'mock'
 import { T, StyledDiv } from './styled'
+import OrderModalStore from 'stores/OrderModalStore'
 
 interface P {
 	memo: string
@@ -22,11 +25,33 @@ export default function DraftMenuItem({ memo, users }: P) {
 
 	const onIncrease = () => {
 		setdraftAmount(draftAmount + 1)
+		DraftMenuItemsStore.addDraftMenuItem({
+			menuId: get(OrderModalStore.menu, 'id', ''),
+			quantity: 1,
+			memo: memo,
+			tableId: TABLE_NUMBER,
+			user: {
+				id: get(mliffx.userProfile, ['value', 'data', 'userId']),
+				name: get(mliffx.userProfile, ['value', 'data', 'userId']),
+				avatarUrl: get(mliffx.userProfile, ['value', 'data', 'pictureUrl']),
+			},
+		})
 	}
 
 	const onDecrease = () => {
 		if (draftAmount > 0) {
 			setdraftAmount(draftAmount - 1)
+			DraftMenuItemsStore.dercrese({
+				menuId: get(OrderModalStore.menu, 'id', ''),
+				quantity: 1,
+				memo: memo,
+				tableId: TABLE_NUMBER,
+				user: {
+					id: get(mliffx.userProfile, ['value', 'data', 'userId']),
+					name: get(mliffx.userProfile, ['value', 'data', 'userId']),
+					avatarUrl: get(mliffx.userProfile, ['value', 'data', 'pictureUrl']),
+				},
+			})
 		}
 	}
 
