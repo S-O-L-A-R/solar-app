@@ -44,11 +44,13 @@ export default function MenuPage() {
 										menu.name.toLowerCase().includes(filterText.toLowerCase()) ||
 										menu.desc.toLowerCase().includes(filterText.toLowerCase()),
 								)
-								.map(item => (
+								.map((item, index) => (
 									<CustomerMenuCard
 										key={`${item.name}-${Math.random() * 100}`}
 										menu={item}
 										tableId={TABLE_NUMBER}
+										hot={index < 2}
+										recommended={index === 2}
 									/>
 								))}
 						</Gap>

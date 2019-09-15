@@ -7,9 +7,17 @@ interface Props {
 	menu: Menu
 	plugins?: ReactNode
 	onClick?: () => void
+	hot?: boolean
+	recommended?: boolean
 }
 
-const MenuCard = ({ menu: { thumbnailUrl, name, desc, price, active = true }, plugins, onClick }: Props) => {
+const MenuCard = ({
+	menu: { thumbnailUrl, name, desc, price, active = true },
+	plugins,
+	onClick,
+	hot,
+	recommended,
+}: Props) => {
 	return (
 		<Card onClick={onClick}>
 			<Gap size="18px">
@@ -17,7 +25,7 @@ const MenuCard = ({ menu: { thumbnailUrl, name, desc, price, active = true }, pl
 				<Info>
 					<Head className={!active ? 'grayscale' : ''}>
 						<Gap size="8px" type="vertical">
-							<Title className="highlight">{name}</Title>
+							<Title className="highlight">{`${name}${hot ? '🔥' : ''}${recommended ? '❤️' : ''}`}</Title>
 							<Desc>{desc}</Desc>
 						</Gap>
 						<Price className="highlight primary-text">{`฿${price}`}</Price>

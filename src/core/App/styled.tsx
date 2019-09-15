@@ -18,6 +18,20 @@ export const Container = styled.div`
 	justify-content: center;
 	align-items: center;
 	text-align: center;
+	> * > svg {
+		@keyframes spin {
+			from {
+				transform: rotate(0deg);
+			}
+			to {
+				transform: rotate(360deg);
+			}
+		}
+		animation-name: spin;
+		animation-duration: 5000ms;
+		animation-iteration-count: infinite;
+		animation-timing-function: linear;
+	}
 `
 
 export const GlobalStylesheet = createGlobalStyle`

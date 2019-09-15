@@ -11,6 +11,8 @@ import OrderModalStore from 'stores/OrderModalStore'
 interface Props {
 	menu: Menu
 	tableId: string
+	hot?: boolean
+	recommended?: boolean
 }
 
 const IdiotBadge = ({ user, quantity }: { user: User; quantity: number }) => {
@@ -43,9 +45,11 @@ function getGroupData(tableId: string, menu: Menu) {
 	}))
 }
 
-export default function SMC({ menu, tableId }: Props) {
+export default function SMC({ menu, tableId, hot, recommended }: Props) {
 	return useObserver(() => (
 		<MenuCard
+			hot={hot}
+			recommended={recommended}
 			menu={menu}
 			onClick={() => OrderModalStore.setMenuModal(menu)}
 			plugins={
