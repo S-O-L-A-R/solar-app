@@ -25,16 +25,16 @@ export default function DraftMenuItem({ memo, users }: P) {
 
 	const onIncrease = async () => {
 		setdraftAmount(draftAmount + 1)
-		await mliffx.getProfile()
+		const user = await liff.getProfile()
 		DraftMenuItemsStore.addDraftMenuItem({
 			menuId: get(OrderModalStore.menu, 'id', ''),
 			quantity: 1,
 			memo: memo,
 			tableId: TABLE_NUMBER,
 			user: {
-				id: get(mliffx.userProfile, ['value', 'data', 'userId']),
-				name: get(mliffx.userProfile, ['value', 'data', 'userId']),
-				avatarUrl: get(mliffx.userProfile, ['value', 'data', 'pictureUrl']),
+				id: user.userId,
+				name: user.displayName,
+				avatarUrl: user.pictureUrl,
 			},
 		})
 	}
@@ -42,16 +42,16 @@ export default function DraftMenuItem({ memo, users }: P) {
 	const onDecrease = async () => {
 		if (draftAmount > 0) {
 			setdraftAmount(draftAmount - 1)
-			await mliffx.getProfile()
+			const user = await liff.getProfile()
 			DraftMenuItemsStore.dercrese({
 				menuId: get(OrderModalStore.menu, 'id', ''),
 				quantity: 1,
 				memo: memo,
 				tableId: TABLE_NUMBER,
 				user: {
-					id: get(mliffx.userProfile, ['value', 'data', 'userId']),
-					name: get(mliffx.userProfile, ['value', 'data', 'userId']),
-					avatarUrl: get(mliffx.userProfile, ['value', 'data', 'pictureUrl']),
+					id: user.userId,
+					name: user.displayName,
+					avatarUrl: user.pictureUrl,
 				},
 			})
 		}

@@ -83,16 +83,16 @@ export default function OrderModal() {
 	}
 
 	const onAddOrderToStore = async () => {
-		await mliffx.getProfile()
+		const user = await liff.getProfile()
 		await DraftMenuItemsStore.addDraftMenuItem({
 			menuId: get(OrderModalStore.menu, 'id', ''),
 			quantity: orderAmount,
 			memo: memo,
 			tableId: TABLE_NUMBER,
 			user: {
-				id: get(mliffx.userProfile, ['value', 'data', 'userId']),
-				name: get(mliffx.userProfile, ['value', 'data', 'userId']),
-				avatarUrl: get(mliffx.userProfile, ['value', 'data', 'pictureUrl']),
+				id: user.userId,
+				name: user.displayName,
+				avatarUrl: user.pictureUrl,
 			},
 		})
 		setOrderAmount(1)
