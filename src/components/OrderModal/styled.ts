@@ -9,14 +9,13 @@ export const StyledContainer = styled.div`
 export const StyledOrderDetail = styled.div`
 	display: grid;
 	grid-template-columns: 200px 1fr;
-	grid-template-rows: 42px 1fr;
+	grid-template-rows: 64px 1fr;
 	height: auto;
 	margin-bottom: 10px;
 `
 
 export const StyledMenuName = styled.span`
 	grid-area: 1/1/2/2;
-
 	color: #000000;
 	font-size: 24px;
 `

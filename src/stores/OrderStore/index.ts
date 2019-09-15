@@ -19,7 +19,7 @@ class OrderStore {
 	@computed
 	get order() {
 		if (!this.ordersCollection || !this.ordersCollection.hasDocs) return null
-		const order = this.ordersCollection.docs.find(({ data, id }: any) => {
+		const order = this.ordersCollection.docs.find(({ data }: any) => {
 			return data.userId === userId && data.state === ORDER_STATUS.Pending
 		})
 		if (!order) return null

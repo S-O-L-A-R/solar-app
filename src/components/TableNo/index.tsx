@@ -7,7 +7,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 
 const TableNo = ({ tableName, ...props }: Props) => (
 	<No className="highlight" {...props}>
-		{tableName}
+		{`Table No.${tableName}`}
 	</No>
 )
 

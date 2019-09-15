@@ -9,7 +9,7 @@ interface Props {
 	onClick?: () => void
 }
 
-const MenuCard = ({ menu: { thumbnailUrl, name, desc, price, active }, plugins, onClick }: Props) => {
+const MenuCard = ({ menu: { thumbnailUrl, name, desc, price, active = true }, plugins, onClick }: Props) => {
 	return (
 		<Card onClick={onClick}>
 			<Gap size="18px">
