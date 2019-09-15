@@ -15,7 +15,7 @@ import { User } from 'types/User'
 import { useObserver } from 'mobx-react'
 import { get } from 'lodash'
 import { TABLE_NUMBER } from 'mock'
-
+import useUser from 'hooks/useUser'
 interface EnhancedOrderUser extends User {
 	quantity: number
 }
@@ -66,6 +66,7 @@ function grouping(id: string) {
 export default function OrderModal() {
 	const [orderAmount, setOrderAmount] = useState(1)
 	const [memo, setMemo] = useState('')
+	const lineUser = useUser()
 
 	const onIncrease = () => {
 		setOrderAmount(orderAmount + 1)
@@ -82,16 +83,15 @@ export default function OrderModal() {
 	}
 
 	const onAddOrderToStore = async () => {
-		const user = await liff.getProfile()
 		await DraftMenuItemsStore.addDraftMenuItem({
 			menuId: get(OrderModalStore.menu, 'id', ''),
 			quantity: orderAmount,
 			memo: memo,
 			tableId: TABLE_NUMBER,
 			user: {
-				id: user.userId,
-				name: user.displayName,
-				avatarUrl: user.pictureUrl,
+				id: lineUser.userId,
+				name: lineUser.displayName,
+				avatarUrl: lineUser.pictureUrl,
 			},
 		})
 		setOrderAmount(1)

@@ -26,16 +26,15 @@ export default function DraftMenuItem({ memo, users }: P) {
 
 	const onIncrease = async () => {
 		setdraftAmount(draftAmount + 1)
-		const user = await liff.getProfile()
 		DraftMenuItemsStore.addDraftMenuItem({
 			menuId: get(OrderModalStore.menu, 'id', ''),
 			quantity: 1,
 			memo: memo,
 			tableId: TABLE_NUMBER,
 			user: {
-				id: user.userId,
-				name: user.displayName,
-				avatarUrl: user.pictureUrl,
+				id: lineUser.userId,
+				name: lineUser.displayName,
+				avatarUrl: lineUser.pictureUrl,
 			},
 		})
 	}
@@ -43,16 +42,15 @@ export default function DraftMenuItem({ memo, users }: P) {
 	const onDecrease = async () => {
 		if (draftAmount > 0) {
 			setdraftAmount(draftAmount - 1)
-			const user = await liff.getProfile()
 			DraftMenuItemsStore.dercrese({
 				menuId: get(OrderModalStore.menu, 'id', ''),
 				quantity: 1,
 				memo: memo,
 				tableId: TABLE_NUMBER,
 				user: {
-					id: user.userId,
-					name: user.displayName,
-					avatarUrl: user.pictureUrl,
+					id: lineUser.userId,
+					name: lineUser.displayName,
+					avatarUrl: lineUser.pictureUrl,
 				},
 			})
 		}
