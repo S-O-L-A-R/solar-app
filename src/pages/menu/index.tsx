@@ -26,7 +26,7 @@ export default function MenuPage() {
 		MenusStore.setMenus()
 		DraftMenuItemStore.setDraftMenuItems()
 		SummaryModalStore.getSummary(lineUser.userId)
-	}, [lineUser.userId])
+	}, [lineUser.userId, DraftMenuItemStore.timestamp]) // eslint-disable-line
 
 	return useObserver(() => {
 		return (

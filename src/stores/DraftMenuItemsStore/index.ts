@@ -1,4 +1,4 @@
-import { observable, action, computed } from 'mobx'
+import { observable, action, computed, runInAction } from 'mobx'
 import { Collection, Document } from 'firestorter'
 import { MenuItemV2 } from 'types/Menu'
 import RestaurantStore from 'stores/RestaurantStore'
@@ -8,6 +8,8 @@ import SummaryModalStore from 'stores/SummaryModalStore'
 class DraftMenuItemStore {
 	@observable
 	public menusCollection?: Collection<Document<MenuItemV2>>
+	@observable
+	timestamp: number = Date.now()
 
 	@action
 	public setDraftMenuItems() {
@@ -27,12 +29,14 @@ class DraftMenuItemStore {
 	async addDraftMenuItem(data: MenuItemV2) {
 		await getClient().addDraftMenuItem(data)
 		SummaryModalStore.getSummary(data.user.id)
+		runInAction(() => (this.timestamp = Date.now()))
 	}
 
 	@action
 	async dercrese(data: MenuItemV2) {
 		await getClient().deleteMenuItem(data)
 		SummaryModalStore.getSummary(data.user.id)
+		runInAction(() => (this.timestamp = Date.now()))
 	}
 }
 
