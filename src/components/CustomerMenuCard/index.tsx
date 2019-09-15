@@ -5,28 +5,26 @@ import { Container, UsersContainer, Number } from './styled'
 import { Menu } from 'types/Menu'
 import DraftMenuItemStore from 'stores/DraftMenuItemsStore'
 import { User } from 'types/User'
-import mliffx from 'mliffx'
+import useUser from 'hooks/useUser'
 import { useObserver } from 'mobx-react'
-import { get } from 'lodash'
 import OrderModalStore from 'stores/OrderModalStore'
-
 interface Props {
 	menu: Menu
 	tableId: string
 }
 
-const IdiotBadge = ({ user, quantity }: { user: User; quantity: number }) =>
-	useObserver(() => (
+const IdiotBadge = ({ user, quantity }: { user: User; quantity: number }) => {
+	const lineUser = useUser()
+	return useObserver(() => (
 		<Gap size="8px">
 			<Photo src={user.avatarUrl} alt="" variant="circle" size={16} />
 			<Number
 				className={
-					user.id === get(mliffx, ['userProfile', 'value', 'data', 'userId'])
-						? 'primary-text bold'
-						: 'gray2-text'
+					user.id === (lineUser && lineUser.userId) ? 'primary-text bold' : 'gray2-text'
 				}>{`x${quantity}`}</Number>
 		</Gap>
 	))
+}
 
 function getGroupData(tableId: string, menu: Menu) {
 	const data = DraftMenuItemStore.menus.filter(({ tableId: tid, menuId }) => tableId === tid && menuId === menu.id)

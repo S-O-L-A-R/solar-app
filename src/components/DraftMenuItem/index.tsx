@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { StyledDraftMenuItemContainer, StyledMemo, StyledAmount } from './styled'
 import { NumberPicker, Gap, Photo } from 'solarxui'
-import mliffx from 'mliffx'
+import useUser from 'hooks/useUser'
 import { get } from 'lodash'
 import DraftMenuItemsStore from 'stores/DraftMenuItemsStore'
 import { TABLE_NUMBER } from 'mock'
@@ -20,7 +20,8 @@ interface P {
 }
 
 export default function DraftMenuItem({ memo, users }: P) {
-	const user = users.find(({ id }) => id === get(mliffx, 'userProfile.value.data.userId'))
+	const lineUser = useUser()
+	const user = users.find(({ id }) => id === (lineUser && lineUser.userId))
 	const [draftAmount, setdraftAmount] = useState(user ? user.quantity : 0)
 
 	const onIncrease = async () => {
@@ -65,7 +66,7 @@ export default function DraftMenuItem({ memo, users }: P) {
 			</StyledAmount>
 			<StyledDiv>
 				{users
-					.filter(({ id }) => id !== get(mliffx, 'userProfile.value.data.userId'))
+					.filter(({ id }) => id !== (lineUser && lineUser.userId))
 					.map(({ quantity, avatarUrl, name }) => (
 						<T className="gray2-text">
 							<Gap size="8px">
