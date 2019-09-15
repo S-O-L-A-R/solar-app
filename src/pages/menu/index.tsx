@@ -37,14 +37,14 @@ export default function MenuPage() {
 	}, [])
 
 	return useObserver(() => {
-		const order = OrderStore.order
-		let totalAmount = 0
-		if (order && order.items) {
-			totalAmount = order.items.reduce((sum, menuItem) => sum + menuItem.amount, 0)
-		}
+		// const order = OrderStore.order
+		// let totalAmount = 0
+		// if (order && order.items) {
+		// 	totalAmount = order.items.reduce((sum, menuItem) => sum + menuItem.amount, 0)
+		// }
 		return (
 			<TableWrapper>
-				<SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} order={order} />
+				{/* <SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} order={order} /> */}
 				<SearchablePageWrapper
 					onTextFilterChange={onTextFilterChange}
 					textFilter={filterText}
@@ -66,7 +66,7 @@ export default function MenuPage() {
 								))}
 						</Gap>
 					</PageContainer>
-					<PageButton onClick={openSummaryModal}>{`฿${totalAmount} Order`}</PageButton>
+					{/* <PageButton onClick={openSummaryModal}>{`฿${totalAmount} Order`}</PageButton> */}
 				</SearchablePageWrapper>
 				<OrderModal />
 			</TableWrapper>

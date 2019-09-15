@@ -21,21 +21,43 @@ interface EnhancedOrderUser extends User {
 	quantity: number
 }
 
+function sumQauntity(users: EnhancedOrderUser[]) {
+	return Object.values(
+		users.reduce(
+			(prev, curr) => {
+				return {
+					[curr.id]: prev[curr.id]
+						? {
+								...curr,
+								quantity: curr.quantity + prev[curr.id].quantity,
+						  }
+						: curr,
+				}
+			},
+			{} as { [key: string]: EnhancedOrderUser },
+		),
+	)
+}
+
 function grouping(id: string) {
 	const data = DraftMenuItemsStore.menus.filter(({ menuId }) => menuId === id)
 	const stat = data.reduce(
 		(obj, curr) => {
-			obj[curr.memo] = {
-				memo: curr.memo,
-				users: [
-					{
-						...curr.user,
-						quantity: curr.quantity,
-					},
-					...obj[curr.memo].users,
-				],
-			} || { users: [], memo: '' }
-			return obj
+			return {
+				...obj,
+				[curr.memo]: obj[curr.memo]
+					? {
+							memo: curr.memo,
+							users: sumQauntity([
+								{
+									...curr.user,
+									quantity: curr.quantity,
+								},
+								...obj[curr.memo].users,
+							]),
+					  }
+					: { users: [{ ...curr.user, quantity: curr.quantity }], memo: curr.memo },
+			}
 		},
 		{} as { [type: string]: { users: EnhancedOrderUser[]; memo: string } },
 	)
@@ -72,7 +94,8 @@ export default function OrderModal() {
 				avatarUrl: get(mliffx.userProfile, ['value', 'data', 'pictureUrl']),
 			},
 		})
-
+		setOrderAmount(1)
+		setMemo('')
 		OrderModalStore.close()
 	}
 
@@ -99,10 +122,10 @@ export default function OrderModal() {
 					<Button onClick={onAddOrderToStore} disabled={orderAmount < 1}>
 						Add
 					</Button>
-					{grouping(get(OrderModalStore, ['menu', 'desc'], [])).length > 0 && (
+					{OrderModalStore.menu && grouping(get(OrderModalStore.menu, 'id', '')).length > 0 && (
 						<Fragment>
 							<Separator />
-							{grouping(get(OrderModalStore, 'menu.desc')).map(({ memo, users }) => (
+							{grouping(get(OrderModalStore.menu, 'id')).map(({ memo, users }) => (
 								<DraftMenuItem key={memo} memo={memo} users={users} amount={0} />
 							))}
 						</Fragment>

@@ -8,10 +8,16 @@ export const StyledDraftMenuItemContainer = styled.div`
 
 export const StyledMemo = styled.div`
 	grid-area: 1/1/2/2;
+	padding-bottom: 8px;
 `
 
 export const StyledAmount = styled.div`
 	grid-area: 1/2/2/3;
+	justify-self: end;
+`
+
+export const StyledDiv = styled.div`
+	grid-area: 2/1/3/2;
 `
 
 export const T = styled.div`

@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { StyledDraftMenuItemContainer, StyledMemo, StyledAmount } from './styled'
 import { NumberPicker, Gap, Photo } from 'solarxui'
-import { T } from './styled'
+import mliffx from 'mliffx'
+import { get } from 'lodash'
+import { T, StyledDiv } from './styled'
 
 interface P {
 	memo: string
@@ -14,8 +16,9 @@ interface P {
 	amount: number
 }
 
-export default function DraftMenuItem({ memo, users, amount }: P) {
-	const [draftAmount, setdraftAmount] = useState(amount)
+export default function DraftMenuItem({ memo, users }: P) {
+	const user = users.find(({ id }) => id === get(mliffx, 'userProfile.value.data.userId'))
+	const [draftAmount, setdraftAmount] = useState(user ? user.quantity : 0)
 
 	const onIncrease = () => {
 		setdraftAmount(draftAmount + 1)
@@ -29,21 +32,23 @@ export default function DraftMenuItem({ memo, users, amount }: P) {
 
 	return (
 		<StyledDraftMenuItemContainer>
-			<div>
-				<StyledMemo>{memo}</StyledMemo>
-				<StyledAmount>
-					<NumberPicker onIncrease={onIncrease} onDecrease={onDecrease} value={draftAmount} />
-				</StyledAmount>
-			</div>
-			{users.map(({ quantity, avatarUrl, name }) => (
-				<T className="gray2-text">
-					<Gap size="8px">
-						<div>{`${quantity}x`}</div>
-						<Photo size={16} variant="circle" src={avatarUrl} />
-						<div>{name}</div>
-					</Gap>
-				</T>
-			))}
+			<StyledMemo>{memo}</StyledMemo>
+			<StyledAmount>
+				<NumberPicker onIncrease={onIncrease} onDecrease={onDecrease} value={draftAmount} />
+			</StyledAmount>
+			<StyledDiv>
+				{users
+					.filter(({ id }) => id !== get(mliffx, 'userProfile.value.data.userId'))
+					.map(({ quantity, avatarUrl, name }) => (
+						<T className="gray2-text">
+							<Gap size="8px">
+								<div>{`${quantity}x`}</div>
+								<Photo size={16} variant="circle" src={avatarUrl} />
+								<div>{name}</div>
+							</Gap>
+						</T>
+					))}
+			</StyledDiv>
 		</StyledDraftMenuItemContainer>
 	)
 }
