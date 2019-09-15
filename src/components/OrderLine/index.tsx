@@ -18,10 +18,10 @@ interface Props {
 export default function OrderLine({ title, plugin, order, staff }: Props) {
 	return (
 		<Wrapper>
-			<Gap type="vertical" size="12px">
+			{/* <Gap type="vertical" size="12px">
 				<Sep>
 					{title}
-					<Time className="highlight">{localizedDurationFromNow(order.timestamp)}</Time>
+					<Time className="highlight">{localizedDurationFromNow(order.timestamp.seconds)}</Time>
 				</Sep>
 				{order.menus.map(menu => (
 					<IHateYouContainer>
@@ -40,7 +40,7 @@ export default function OrderLine({ title, plugin, order, staff }: Props) {
 						{plugin(menu)}
 					</IHateYouContainer>
 				))}
-			</Gap>
+			</Gap> */}
 		</Wrapper>
 	)
 }

@@ -37,8 +37,25 @@ export default class ApiClient {
 		return this.client
 			.post<T>('rms-ms/v1/summary', {
 				userId,
-				tableId: '1214',
+				tableId: '1241',
 			})
+			.then(data => data.data)
+	}
+
+	async pay({ tableId, userId }: { tableId: string; userId: string }) {
+		return this.client
+			.post<{
+				returnCode: string
+				returnMessage: string
+				info: {
+					paymentUrl: {
+						web: string
+						app: string
+					}
+					transactionId: string
+					paymentAccessToken: string
+				}
+			}>('/rms-ms/v1/summary/pay', { tableId, userId })
 			.then(data => data.data)
 	}
 }

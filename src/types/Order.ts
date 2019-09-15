@@ -1,4 +1,4 @@
-import { MenuItem, MenuItemV3 } from './Menu'
+import { MenuItem, MenuItemV3, Menu } from './Menu'
 import { User } from './User'
 
 export interface Order {
@@ -7,8 +7,28 @@ export interface Order {
 		avatarUrl: string
 	}
 	table: string
-	menus: MenuItem[]
-	timestamp: number
+	timestamp: {
+		nanos: number
+		seconds: number
+	}
+	id: string
+	items: {
+		[id: string]: {
+			amount: number
+			memo: string
+			menu: Menu
+			quantity: number
+			unitPrice: number
+		}
+	}
+	paidTime: null
+	state: string
+	tableId: string
+	total: {
+		amount: number
+		quantity: number
+	}
+	userId: string
 }
 
 export interface OrderItem {

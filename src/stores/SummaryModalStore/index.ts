@@ -1,19 +1,33 @@
 import ModalStore from 'stores/ModalStore'
 import { observable, action, runInAction } from 'mobx'
-import { OrderItem } from 'types/Order'
+import { Order } from 'types/Order'
 import getClient from 'core/api'
 
 class SummaryModalStore extends ModalStore {
 	@observable
-	order?: OrderItem
+	order?: Order
 
 	@action.bound
 	public async getSummary(userId: string) {
-		const order = await getClient().getSummary<OrderItem>(userId)
+		const order = await getClient().getSummary<Order>(userId)
 		runInAction(() => {
 			this.order = order
 		})
-		this.open()
+	}
+
+	@action.bound
+	public async pay() {
+		if (!this.order) return null
+		const res = await getClient().pay({
+			userId: this.order.userId,
+			tableId: this.order.tableId,
+		})
+		console.log(res)
+		if (liff.openWindow) {
+			liff.openWindow({ url: res.info.paymentUrl.web })
+		} else {
+			window.location.href = res.info.paymentUrl.web
+		}
 	}
 }
 

@@ -17,6 +17,7 @@ import useUser from 'hooks/useUser'
 
 export default function MenuPage() {
 	const [filterText, setFilterText] = useState('')
+	const lineUser = useUser()
 	const onTextFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setFilterText(e.target.value)
 	}
@@ -24,9 +25,8 @@ export default function MenuPage() {
 	useEffect(() => {
 		MenusStore.setMenus()
 		DraftMenuItemStore.setDraftMenuItems()
-	}, [])
-
-	const lineUser = useUser()
+		SummaryModalStore.getSummary(lineUser.userId)
+	}, [lineUser.userId])
 
 	return useObserver(() => {
 		return (
@@ -53,7 +53,12 @@ export default function MenuPage() {
 								))}
 						</Gap>
 					</PageContainer>
-					<PageButton onClick={() => SummaryModalStore.getSummary(lineUser.userId)}>{`Order`}</PageButton>
+					{SummaryModalStore.order && (
+						<PageButton
+							onClick={() =>
+								SummaryModalStore.open()
+							}>{`฿${SummaryModalStore.order.total.amount} Order`}</PageButton>
+					)}
 				</SearchablePageWrapper>
 				<OrderModal />
 			</TableWrapper>

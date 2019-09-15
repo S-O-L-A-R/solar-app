@@ -18,7 +18,7 @@ const SummaryModal = () => {
 			<Container>
 				<span className="title">Summary</span>
 				<SummaryMenus menuItems={Object.values(get(SummaryModalStore, 'order.items', {}))} />
-				<RLPButton />
+				<RLPButton onClick={() => SummaryModalStore.pay()} />
 			</Container>
 		</ClosableModal>
 	))

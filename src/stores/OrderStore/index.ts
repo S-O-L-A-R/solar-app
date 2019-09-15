@@ -25,7 +25,6 @@ class OrderStore {
 
 	@computed
 	get order() {
-		console.log(this.user, 'user')
 		if (!this.ordersCollection || !this.ordersCollection.hasDocs) return null
 		const order = this.ordersCollection.docs.find(({ data }: any) => {
 			return this.user && data.userId === this.user.userId && data.state === ORDER_STATUS.Pending

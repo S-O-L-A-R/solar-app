@@ -3,6 +3,7 @@ import { Collection, Document } from 'firestorter'
 import { MenuItemV2 } from 'types/Menu'
 import RestaurantStore from 'stores/RestaurantStore'
 import getClient from 'core/api'
+import SummaryModalStore from 'stores/SummaryModalStore'
 
 class DraftMenuItemStore {
 	@observable
@@ -25,11 +26,13 @@ class DraftMenuItemStore {
 	@action
 	async addDraftMenuItem(data: MenuItemV2) {
 		await getClient().addDraftMenuItem(data)
+		SummaryModalStore.getSummary(data.user.id)
 	}
 
 	@action
 	async dercrese(data: MenuItemV2) {
 		await getClient().deleteMenuItem(data)
+		SummaryModalStore.getSummary(data.user.id)
 	}
 }
 
