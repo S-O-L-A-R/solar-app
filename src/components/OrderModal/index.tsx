@@ -126,7 +126,12 @@ export default function OrderModal() {
 						<Fragment>
 							<Separator />
 							{grouping(get(OrderModalStore.menu, 'id')).map(({ memo, users }) => (
-								<DraftMenuItem key={memo} memo={memo} users={users} amount={0} />
+								<DraftMenuItem
+									key={`${memo}-${Math.random() * 100}`}
+									memo={memo}
+									users={users}
+									amount={0}
+								/>
 							))}
 						</Fragment>
 					)}

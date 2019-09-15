@@ -14,7 +14,7 @@ const NotFound = () => (
 	<Container>
 		<Gap type="vertical" size="40px">
 			<SOLAR size={175} />
-			<div className="highlight primary-text">Nooooo This restaurant is not existed!!!</div>
+			<div className="highlight primary-text">Welcome to Too Slow To Wake Restaurant</div>
 		</Gap>
 	</Container>
 )
