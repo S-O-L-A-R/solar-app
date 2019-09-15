@@ -23,8 +23,9 @@ export default function DraftMenuItem({ memo, users }: P) {
 	const user = users.find(({ id }) => id === get(mliffx, 'userProfile.value.data.userId'))
 	const [draftAmount, setdraftAmount] = useState(user ? user.quantity : 0)
 
-	const onIncrease = () => {
+	const onIncrease = async () => {
 		setdraftAmount(draftAmount + 1)
+		await mliffx.getProfile()
 		DraftMenuItemsStore.addDraftMenuItem({
 			menuId: get(OrderModalStore.menu, 'id', ''),
 			quantity: 1,
@@ -38,9 +39,10 @@ export default function DraftMenuItem({ memo, users }: P) {
 		})
 	}
 
-	const onDecrease = () => {
+	const onDecrease = async () => {
 		if (draftAmount > 0) {
 			setdraftAmount(draftAmount - 1)
+			await mliffx.getProfile()
 			DraftMenuItemsStore.dercrese({
 				menuId: get(OrderModalStore.menu, 'id', ''),
 				quantity: 1,

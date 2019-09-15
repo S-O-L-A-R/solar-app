@@ -83,6 +83,7 @@ export default function OrderModal() {
 	}
 
 	const onAddOrderToStore = async () => {
+		await mliffx.getProfile()
 		await DraftMenuItemsStore.addDraftMenuItem({
 			menuId: get(OrderModalStore.menu, 'id', ''),
 			quantity: orderAmount,
