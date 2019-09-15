@@ -14,7 +14,6 @@ import DraftMenuItemsStore from 'stores/DraftMenuItemsStore'
 import { User } from 'types/User'
 import { useObserver } from 'mobx-react'
 import { get } from 'lodash'
-import mliffx from 'mliffx'
 import { TABLE_NUMBER } from 'mock'
 
 interface EnhancedOrderUser extends User {
