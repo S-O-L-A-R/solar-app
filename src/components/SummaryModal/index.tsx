@@ -3,36 +3,25 @@ import { ClosableModal } from 'solarxui'
 import styled from 'styled-components'
 import SummaryMenus from 'components/SummaryMenus'
 import RLPButton from 'components/RLPButton'
-import { OrderItem } from 'types/Order'
+import SummaryModalStore from 'stores/SummaryModalStore'
+import { get } from 'lodash'
+import { useObserver } from 'mobx-react'
 
 const Container = styled.div`
 	padding: 0 21px;
 	padding-bottom: 38px;
 `
 
-interface Props {
-	isOpen: boolean
-	onClose: () => void
-	order: OrderItem | null
-}
-
-const SummaryModal = ({ isOpen, onClose, order }: Props) => {
-	if (!order) {
-		return null
-	}
-	return (
-		<ClosableModal isOpen={isOpen} onClose={onClose}>
+const SummaryModal = () => {
+	return useObserver(() => (
+		<ClosableModal isOpen={SummaryModalStore.isOpen} onClose={() => SummaryModalStore.close()}>
 			<Container>
 				<span className="title">Summary</span>
-				<SummaryMenus menuItems={order.items} />
+				<SummaryMenus menuItems={Object.values(get(SummaryModalStore, 'order.items', {}))} />
 				<RLPButton />
 			</Container>
 		</ClosableModal>
-	)
-}
-
-SummaryModal.defaultProps = {
-	isOpen: false,
+	))
 }
 
 export default SummaryModal

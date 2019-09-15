@@ -1,11 +1,11 @@
-import React, { useEffect, useState, ChangeEvent } from 'react'
+import React, { useEffect, useState, ChangeEvent, useCallback } from 'react'
 import { Gap } from 'solarxui'
 import CustomerMenuCard from 'components/CustomerMenuCard'
-// import PageButton from 'components/PageButton'
+import PageButton from 'components/PageButton'
 import TableWrapper from 'components/TableWrapper'
 import SearchablePageWrapper from 'components/SearchablePageWrapper'
 import PageContainer from 'components/PageContainer'
-// import SummaryModal from 'components/SummaryModal/index'
+import SummaryModal from 'components/SummaryModal/index'
 import OrderModal from 'components/OrderModal'
 import { Menu } from 'types/Menu'
 import MenusStore from 'stores/MenusStore'
@@ -13,22 +13,14 @@ import OrderStore from 'stores/OrderStore'
 import { useObserver } from 'mobx-react'
 import DraftMenuItemStore from 'stores/DraftMenuItemsStore'
 import { TABLE_NUMBER } from 'mock'
+import SummaryModalStore from 'stores/SummaryModalStore'
 
 export default function MenuPage() {
-	// const [summaryModalOpen, setSummaryModalOpen] = useState(false)
 	const [filterText, setFilterText] = useState('')
 
 	const onTextFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setFilterText(e.target.value)
 	}
-
-	// const closeSummaryModal = useCallback(() => {
-	// 	setSummaryModalOpen(false)
-	// }, [])
-
-	// const openSummaryModal = useCallback(() => {
-	// 	setSummaryModalOpen(true)
-	// }, [])
 
 	useEffect(() => {
 		OrderStore.setOrders()
@@ -37,14 +29,14 @@ export default function MenuPage() {
 	}, [])
 
 	return useObserver(() => {
-		// const order = OrderStore.order
-		// let totalAmount = 0
-		// if (order && order.items) {
-		// 	totalAmount = order.items.reduce((sum, menuItem) => sum + menuItem.amount, 0)
-		// }
+		const order = OrderStore.order
+		let totalAmount = 0
+		if (order && order.items) {
+			totalAmount = Object.values(order.items).reduce((sum, menuItem) => sum + menuItem.amount, 0)
+		}
 		return (
 			<TableWrapper>
-				{/* <SummaryModal isOpen={summaryModalOpen} onClose={closeSummaryModal} order={order} /> */}
+				<SummaryModal />
 				<SearchablePageWrapper
 					onTextFilterChange={onTextFilterChange}
 					textFilter={filterText}
@@ -66,7 +58,12 @@ export default function MenuPage() {
 								))}
 						</Gap>
 					</PageContainer>
-					{/* <PageButton onClick={openSummaryModal}>{`฿${totalAmount} Order`}</PageButton> */}
+					<PageButton
+						onClick={() => {
+							if (order) {
+								SummaryModalStore.setSummaryModalStore(order)
+							}
+						}}>{`฿${totalAmount} Order`}</PageButton>
 				</SearchablePageWrapper>
 				<OrderModal />
 			</TableWrapper>
