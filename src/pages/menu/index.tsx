@@ -1,11 +1,11 @@
-import React, { useEffect, useState, useCallback, ChangeEvent } from 'react'
+import React, { useEffect, useState, ChangeEvent } from 'react'
 import { Gap } from 'solarxui'
 import CustomerMenuCard from 'components/CustomerMenuCard'
-import PageButton from 'components/PageButton'
+// import PageButton from 'components/PageButton'
 import TableWrapper from 'components/TableWrapper'
 import SearchablePageWrapper from 'components/SearchablePageWrapper'
 import PageContainer from 'components/PageContainer'
-import SummaryModal from 'components/SummaryModal/index'
+// import SummaryModal from 'components/SummaryModal/index'
 import OrderModal from 'components/OrderModal'
 import { Menu } from 'types/Menu'
 import MenusStore from 'stores/MenusStore'
@@ -15,20 +15,20 @@ import DraftMenuItemStore from 'stores/DraftMenuItemsStore'
 import { TABLE_NUMBER } from 'mock'
 
 export default function MenuPage() {
-	const [summaryModalOpen, setSummaryModalOpen] = useState(false)
+	// const [summaryModalOpen, setSummaryModalOpen] = useState(false)
 	const [filterText, setFilterText] = useState('')
 
 	const onTextFilterChange = (e: ChangeEvent<HTMLInputElement>) => {
 		setFilterText(e.target.value)
 	}
 
-	const closeSummaryModal = useCallback(() => {
-		setSummaryModalOpen(false)
-	}, [])
+	// const closeSummaryModal = useCallback(() => {
+	// 	setSummaryModalOpen(false)
+	// }, [])
 
-	const openSummaryModal = useCallback(() => {
-		setSummaryModalOpen(true)
-	}, [])
+	// const openSummaryModal = useCallback(() => {
+	// 	setSummaryModalOpen(true)
+	// }, [])
 
 	useEffect(() => {
 		OrderStore.setOrders()
