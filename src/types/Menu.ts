@@ -30,3 +30,16 @@ export interface DraftMenuItemType {
 	amount: number
 	user: User
 }
+
+interface MinimalMenu {
+	id: string
+	name: string
+}
+
+export interface MenuItemV3 {
+	amount: number
+	memo: string
+	quantity: number
+	unitPrice: number
+	menu: MinimalMenu
+}

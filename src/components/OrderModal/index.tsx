@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react'
+import React, { useState, Fragment, ChangeEvent } from 'react'
 import { ImageModal, NumberPicker, InputField, Button, Gap, Separator } from 'solarxui'
 import {
 	StyledOrderDetail,
@@ -14,6 +14,8 @@ import DraftMenuItemsStore from 'stores/DraftMenuItemsStore'
 import { User } from 'types/User'
 import { useObserver } from 'mobx-react'
 import { get } from 'lodash'
+import mliffx from 'mliffx'
+import { TABLE_NUMBER } from 'mock'
 
 interface EnhancedOrderUser extends User {
 	quantity: number
@@ -42,6 +44,7 @@ function grouping(id: string) {
 
 export default function OrderModal() {
 	const [orderAmount, setOrderAmount] = useState(1)
+	const [memo, setMemo] = useState('')
 
 	const onIncrease = () => {
 		setOrderAmount(orderAmount + 1)
@@ -52,6 +55,27 @@ export default function OrderModal() {
 			setOrderAmount(orderAmount - 1)
 		}
 	}
+
+	const onMemoChange = (e: ChangeEvent<HTMLInputElement>) => {
+		setMemo(e.target.value)
+	}
+
+	const onAddOrderToStore = async () => {
+		await DraftMenuItemsStore.addDraftMenuItem({
+			menuId: get(OrderModalStore.menu, 'id', ''),
+			quantity: orderAmount,
+			memo: memo,
+			tableId: TABLE_NUMBER,
+			user: {
+				id: get(mliffx.userProfile, ['value', 'data', 'userId']),
+				name: get(mliffx.userProfile, ['value', 'data', 'userId']),
+				avatarUrl: get(mliffx.userProfile, ['value', 'data', 'pictureUrl']),
+			},
+		})
+
+		OrderModalStore.close()
+	}
+
 	return useObserver(() => (
 		<ImageModal
 			src={get(OrderModalStore, 'menu.thumbnailUrl')}
@@ -71,9 +95,11 @@ export default function OrderModal() {
 					</StyledNumberPickerContainer>
 				</StyledOrderDetail>
 				<Gap type="vertical" size="18px">
-					<InputField placeholder="No onion, non-veg..." />
-					<Button>Add</Button>
-					{grouping(get(OrderModalStore, 'menu.desc')).length > 0 && (
+					<InputField placeholder="No onion, non-veg..." onChange={onMemoChange} value={memo} />
+					<Button onClick={onAddOrderToStore} disabled={orderAmount < 1}>
+						Add
+					</Button>
+					{grouping(get(OrderModalStore, ['menu', 'desc'], [])).length > 0 && (
 						<Fragment>
 							<Separator />
 							{grouping(get(OrderModalStore, 'menu.desc')).map(({ memo, users }) => (
