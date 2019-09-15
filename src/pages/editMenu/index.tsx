@@ -2,7 +2,7 @@ import React, { useState, ChangeEvent, useEffect } from 'react'
 import { Gap } from 'solarxui'
 import ChefMenuCard from 'components/ChefMenuCard'
 import PageButton from 'components/PageButton'
-import TableWrapper from 'components/TableWrapper'
+import SimpleTextWrapper from 'components/SimpleTextWrapper'
 import SearchablePageWrapper from 'components/SearchablePageWrapper'
 import PageContainer from 'components/PageContainer'
 import { Menu } from 'types/Menu'
@@ -23,7 +23,7 @@ export default function MenuPage() {
 	}, [])
 
 	return useObserver(() => (
-		<TableWrapper>
+		<SimpleTextWrapper text="Kitchen">
 			<UploadMenuModal />
 			<SearchablePageWrapper
 				onTextFilterChange={onTextFilterChange}
@@ -44,6 +44,6 @@ export default function MenuPage() {
 				</PageContainer>
 				<PageButton onClick={() => CreateOrEditMenuStore.createMenu()}>Add Menu</PageButton>
 			</SearchablePageWrapper>
-		</TableWrapper>
+		</SimpleTextWrapper>
 	))
 }
