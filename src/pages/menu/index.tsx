@@ -57,6 +57,7 @@ export default function MenuPage() {
 					</PageContainer>
 					{SummaryModalStore.order && (
 						<PageButton
+							key={Math.random() * 100}
 							onClick={() =>
 								SummaryModalStore.open()
 							}>{`฿${SummaryModalStore.order.total.amount} Order`}</PageButton>
