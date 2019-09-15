@@ -58,12 +58,14 @@ export default function MenuPage() {
 								))}
 						</Gap>
 					</PageContainer>
-					<PageButton
-						onClick={() => {
-							if (order) {
-								SummaryModalStore.setSummaryModalStore(order)
-							}
-						}}>{`฿${totalAmount} Order`}</PageButton>
+					{order && totalAmount > 0 && (
+						<PageButton
+							onClick={() => {
+								if (order) {
+									SummaryModalStore.setSummaryModalStore(order)
+								}
+							}}>{`฿${totalAmount} Order`}</PageButton>
+					)}
 				</SearchablePageWrapper>
 				<OrderModal />
 			</TableWrapper>
