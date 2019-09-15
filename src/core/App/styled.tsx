@@ -3,7 +3,7 @@ import styled, { createGlobalStyle } from 'styled-components'
 export const PageContainer = styled.div`
 	@media (orientation: portrait) {
 		padding: 0 8px;
-		padding-top: 44px;
+		padding-top: 24px;
 		padding-bottom: 34px;
 	}
 	@media (orientation: landscape) {
@@ -13,6 +13,7 @@ export const PageContainer = styled.div`
 `
 
 export const Container = styled.div`
+	padding-top: 40px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

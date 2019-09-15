@@ -25,6 +25,9 @@ export default function MenuPage() {
 	useEffect(() => {
 		MenusStore.setMenus()
 		DraftMenuItemStore.setDraftMenuItems()
+	}, [])
+
+	useEffect(() => {
 		SummaryModalStore.getSummary(lineUser.userId)
 	}, [lineUser.userId, DraftMenuItemStore.timestamp]) // eslint-disable-line
 

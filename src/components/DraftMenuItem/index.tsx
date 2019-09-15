@@ -66,7 +66,7 @@ export default function DraftMenuItem({ memo, users }: P) {
 				{users
 					.filter(({ id }) => id !== (!!lineUser && lineUser.userId))
 					.map(({ quantity, avatarUrl, name }) => (
-						<T className="gray2-text">
+						<T className="gray2-text" key={name}>
 							<Gap size="8px">
 								<div>{`${quantity}x`}</div>
 								<Photo size={16} variant="circle" src={avatarUrl} />
