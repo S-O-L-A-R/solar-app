@@ -11,6 +11,7 @@ import {
 import DraftMenuItem from 'components/DraftMenuItem'
 import OrderModalStore from 'stores/OrderModalStore'
 import DraftMenuItemsStore from 'stores/DraftMenuItemsStore'
+import SummaryModalStore from 'stores/SummaryModalStore'
 import { User } from 'types/User'
 import { useObserver } from 'mobx-react'
 import { get } from 'lodash'
@@ -94,6 +95,7 @@ export default function OrderModal() {
 				avatarUrl: lineUser.pictureUrl,
 			},
 		})
+		await SummaryModalStore.getSummary(lineUser.userId)
 		setOrderAmount(1)
 		setMemo('')
 		OrderModalStore.close()

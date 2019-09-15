@@ -22,7 +22,6 @@ class SummaryModalStore extends ModalStore {
 			userId: this.order.userId,
 			tableId: this.order.tableId,
 		})
-		console.log(res)
 		if (liff.openWindow) {
 			liff.openWindow({ url: res.info.paymentUrl.web })
 		} else {
