@@ -32,4 +32,13 @@ export default class ApiClient {
 			data: menu,
 		})
 	}
+
+	async getSummary<T>(userId: string) {
+		return this.client
+			.post<T>('rms-ms/v1/summary', {
+				userId,
+				tableId: '1214',
+			})
+			.then(data => data.data)
+	}
 }
